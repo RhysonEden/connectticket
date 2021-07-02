@@ -1,0 +1,218 @@
+@media only screen and (max-device-width: 480px) {
+  select,
+  textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="url"] {
+    font-size: 16px;
+  }
+  .app {
+    display: flex;
+  }
+  .existing {
+    display: none;
+  }
+  .form-input,
+  .form-notes {
+    border: 1px solid black;
+    width: 100%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+
+  .form-notes {
+    height: 100px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+/* Web View */
+
+button {
+  height: 25px;
+  width: 60px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  background-color: #81cb2f;
+  border-radius: 18px;
+  /* border: 1px solid black; */
+  cursor: pointer;
+  color: #ffffff;
+}
+/*
+.buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "header header"
+    "new existing"
+    "new existing";
+}
+.header {
+  grid-area: header;
+}
+.existing {
+  grid-area: existing;
+  justify-content: end;
+  align-items: flex-end;
+  border: 1px solid black;
+}
+.new {
+  grid-area: new;
+}
+
+.new {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.form-input,
+.form-notes {
+  border: 1px solid black;
+  width: 100%;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.form-notes {
+  height: 100px;
+} */
+
+.app {
+  /* flex-direction: column; */
+}
+
+.existing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 30%;
+  border: 1px solid black;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hundred {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 4rem;
+}
+
+.searchbar {
+  border: 1px solid black;
+  height: 40px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.search {
+  text-align: center;
+  height: 37px;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  width: 500px;
+  background-color: #ffffff;
+}
+
+.modal-header,
+.modal-footer {
+  padding: 10px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.modal-title {
+  margin: 0;
+}
+
+.modal-body {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonsother {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.new {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.form-input,
+.form-notes {
+  border: 1px solid black;
+  width: 100%;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.form-notes {
+  height: 100px;
+}
