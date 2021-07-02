@@ -9,14 +9,15 @@ const {
   createTicket,
   getAllTickets,
   deleteTicket,
+  updateTicket,
 } = require("./index");
 
-const callname = "John Doe";
-const callnumber = "(904)555-1234";
-const gvrid = "896543";
-const notes = "Testing the notes and stuff";
-const ntcflag = false;
-const date = "11/12/1980";
+let callname = "John Doe";
+let callnumber = "(904)555-1234";
+let gvrid = "896543";
+let notes = "Testing the notes and stuff";
+let ntcflag = false;
+let date = "11/12/1980";
 
 async function createTables() {
   try {
@@ -133,6 +134,29 @@ async function buildTicket(callname, callnumber, gvrid, notes, ntcflag, date) {
 async function testDelete(id) {
   try {
     let del = await deleteTicket(id);
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function testUpdate() {
+  let callname = "testing";
+  callnumber = "12345";
+  gvrid = "1234556";
+  notes = "updating the ticket";
+  ntcflag = false;
+  date = "07/02/2021";
+  id = 2;
+  try {
+    let del = await updateTicket(
+      callname,
+      callnumber,
+      gvrid,
+      notes,
+      ntcflag,
+      date,
+      id
+    );
   } catch (error) {
     throw error;
   }

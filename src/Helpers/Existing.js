@@ -15,6 +15,7 @@ const Existing = ({
   setGvrid,
   setNotes,
   setNtcflag,
+  setId,
 }) => {
   const removeTix = async (e) => {
     let id = parseInt(e.target.value);
@@ -37,7 +38,7 @@ const Existing = ({
           <div className="hundred">Caller's Name : {mess.callname}</div>
           <div className="hundred">Caller's Number : {mess.callnumber}</div>
           <div className="hundred">GVR ID : {mess.gvrid}</div>
-          <div className="hundred">Notes : {mess.notes}</div>
+          <div className="notes">Notes : {mess.notes}</div>
           <div className="hundred">Date of Call : {mess.date}</div>
           <div className="buttonsother">
             <button value={mess.id} onClick={removeTix}>
@@ -51,6 +52,7 @@ const Existing = ({
                 setGvrid(mess.gvrid);
                 setNotes(mess.notes);
                 setShow(true);
+                setId(mess.id);
               }}
             >
               Update

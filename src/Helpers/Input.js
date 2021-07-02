@@ -83,13 +83,13 @@ const Input = ({
           value={gvrid}
           onChange={changeGvrId}
         ></input>
-        <input
+        <textarea
           className="form-notes"
           id="link"
           placeholder="Notes"
           value={notes}
           onChange={changeNotes}
-        ></input>
+        ></textarea>
         {/* <input
           className="form-input"
           id="link"

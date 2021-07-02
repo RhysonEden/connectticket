@@ -144,6 +144,37 @@ async function deleteTicket(id) {
   return rows;
 }
 
+async function updateTicket(id, fields = {}) {
+  console.log("running index db", fields);
+  try {
+    const setString = Object.keys(fields)
+      .map((key, index) => `${key}=$${index + 1}`)
+      .join(", ");
+    console.log(id, "id");
+    console.log(setString, "set string");
+
+    try {
+      const {
+        rows: [result],
+      } = await client.query(
+        `
+      UPDATE ticket
+      SET ${setString}
+      WHERE id=${id}
+      RETURNING *;
+    `,
+        Object.values(fields)
+      );
+
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   client,
   getAllUsers,
@@ -155,4 +186,5 @@ module.exports = {
   getAllTickets,
   deleteTicket,
   getTicketById,
+  updateTicket,
 };

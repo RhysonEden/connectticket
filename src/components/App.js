@@ -13,6 +13,7 @@ const App = () => {
   const [gvrid, setGvrid] = useState("");
   const [notes, setNotes] = useState("");
   const [ntcflag, setNtcflag] = useState(false);
+  const [id, setId] = useState("");
   useEffect(() => {
     getSomething()
       .then((response) => {
@@ -55,6 +56,7 @@ const App = () => {
         setGvrid={setGvrid}
         setNotes={setNotes}
         setNtcflag={setNtcflag}
+        id={id}
       />
       <Existing
         message={message}
@@ -71,6 +73,7 @@ const App = () => {
         setGvrid={setGvrid}
         setNotes={setNotes}
         setNtcflag={setNtcflag}
+        setId={setId}
       />
     </div>
   );

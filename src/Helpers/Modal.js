@@ -1,5 +1,7 @@
 import React from "react";
 import Input from "./Input";
+import { updateTix } from "../api";
+import moment from "moment";
 
 const Modal = ({
   show,
@@ -14,21 +16,24 @@ const Modal = ({
   setGvrid,
   setNotes,
   setNtcflag,
+  id,
 }) => {
   if (!show) {
     return null;
   }
+  const date = moment().format("MM/DD/YYYY");
+
   const update = () => {
     setShow(false);
-    console.log("test");
+    console.log("test", callname, callnumber, gvrid, notes, ntcflag, id, date);
+    console.log("Id", id, typeof id);
+    updateTix(callname, callnumber, gvrid, notes, ntcflag, date, id);
+    window.location.reload();
   };
 
   return (
     <div className="modal">
       <div className="modal-content">
-        {/* <div className="modal-header">
-          <h4>Modal Title</h4>
-        </div> */}
         <div className="modal-body">
           <Input
             setShow={setShow}
