@@ -10,10 +10,11 @@ const App = () => {
   const [show, setShow] = useState(false);
   const [callname, setCallName] = useState("");
   const [callnumber, setCallNumber] = useState("");
-  const [gvrid, setGvrid] = useState("");
+  const [gvrid, setGvrid] = useState(0);
   const [notes, setNotes] = useState("");
   const [ntcflag, setNtcflag] = useState(false);
   const [id, setId] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   useEffect(() => {
     getSomething()
       .then((response) => {
@@ -42,6 +43,8 @@ const App = () => {
         setGvrid={setGvrid}
         setNotes={setNotes}
         setNtcflag={setNtcflag}
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
       />
       <Modal
         show={show}

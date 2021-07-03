@@ -46,7 +46,8 @@ const Input = ({
   };
 
   const changeGvrId = (e) => {
-    setGvrid(e.target.value);
+    let gvr = parseInt(e.target.value);
+    setGvrid(gvr);
   };
 
   const changeNotes = (e) => {
@@ -61,7 +62,6 @@ const Input = ({
   };
   return (
     <div className="new">
-      {/* stopped here keep getting object object */}
       <div className="form-main">
         <input
           className="form-input"
@@ -90,11 +90,6 @@ const Input = ({
           value={notes}
           onChange={changeNotes}
         ></textarea>
-        {/* <input
-          className="form-input"
-          id="link"
-          placeholder="Need to Call"
-        ></input> */}
         <input
           className="form-input"
           id="link"

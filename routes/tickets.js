@@ -6,12 +6,12 @@ const {
   getAllTickets,
   deleteTicket,
   updateTicket,
+  searchPartsNumber,
 } = require("../db");
 
 ticketRouter.get("/", async (req, res, next) => {
   try {
     const tickets = await getAllTickets();
-    console.log("ticket results", tickets);
     res.send({ tickets });
   } catch ({ name, message }) {
     next({ name, message });
@@ -44,23 +44,17 @@ ticketRouter.post("/delete", async (req, res, next) => {
   }
 });
 
-// ticketRouter.post("/update", async (req, res, next) => {
-//   try {
-//     console.log("routes", req.body);
-//     const { callname, callnumber, gvrid, notes, ntcflag, date, id } = req.body;
-//     const tickets = await updateTicket(
-//       callname,
-//       callnumber,
-//       gvrid,
-//       notes,
-//       ntcflag,
-//       date,
-//       id
-//     );
-//   } catch ({ name, message }) {
-//     next({ name, message });
-//   }
-// });
+ticketRouter.get("/search/:id", async (req, res, next) => {
+  const gvrid = req.params.id;
+  console.log("tickets route", gvrid);
+  try {
+    const part = await searchPartsNumber(gvrid);
+    console.log(part, "Part");
+    res.send({ part });
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
 
 ticketRouter.post("/update", async (req, res, next) => {
   console.log("request", req.body);

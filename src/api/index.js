@@ -68,3 +68,14 @@ export async function updateTix(
     throw error;
   }
 }
+
+export async function getPart(gvr) {
+  console.log("Api Index", gvr);
+  try {
+    const part = await axios.get(`/api/tickets/search/${gvr}`);
+    console.log("part", part);
+    return part;
+  } catch (error) {
+    throw error;
+  }
+}

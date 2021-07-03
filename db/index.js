@@ -175,6 +175,21 @@ async function updateTicket(id, fields = {}) {
   }
 }
 
+async function searchPartsNumber(gvrid) {
+  console.log("backend index", gvrid);
+  try {
+    const { rows } = await client.query(`
+    SELECT *
+    FROM ticket
+    WHERE gvrid LIKE '%${gvrid}%'
+    `);
+    console.log("rows", rows);
+    return { rows };
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   client,
   getAllUsers,
@@ -187,4 +202,5 @@ module.exports = {
   deleteTicket,
   getTicketById,
   updateTicket,
+  searchPartsNumber,
 };
