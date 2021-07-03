@@ -52,7 +52,6 @@ export async function updateTix(
   date,
   id
 ) {
-  console.log("data", callname, callnumber, gvrid, notes, ntcflag, date, id);
   try {
     const { data } = await axios.post("api/tickets/update", {
       callname,

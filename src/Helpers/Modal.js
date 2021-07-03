@@ -2,7 +2,7 @@ import React from "react";
 import Input from "./Input";
 import { updateTix } from "../api";
 import moment from "moment";
-
+import { useAlert } from "react-alert";
 const Modal = ({
   show,
   setShow,
@@ -18,17 +18,27 @@ const Modal = ({
   setNtcflag,
   id,
 }) => {
+  const alert = useAlert();
   if (!show) {
     return null;
   }
   const date = moment().format("MM/DD/YYYY");
 
   const update = () => {
-    setShow(false);
-    console.log("test", callname, callnumber, gvrid, notes, ntcflag, id, date);
-    console.log("Id", id, typeof id);
-    updateTix(callname, callnumber, gvrid, notes, ntcflag, date, id);
-    window.location.reload();
+    let id = gvrid.toString().length;
+    let name = callname.length;
+    let number = callnumber.length;
+    if (id === 6 && name != 0 && number === 10) {
+      setShow(false);
+      updateTix(callname, callnumber, gvrid, notes, ntcflag, date, id);
+      window.location.reload();
+    } else if (id !== 6) {
+      alert.show("Incorrect GVR ID length");
+    } else if (name == 0) {
+      alert.show("Please Enter a Name");
+    } else if (number != 10) {
+      alert.show("Please Correct Phone Number");
+    }
   };
 
   return (

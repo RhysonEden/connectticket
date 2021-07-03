@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./input.css";
 import { createTicket } from "../api";
 import moment from "moment";
-
+import { useAlert } from "react-alert";
 const Input = ({
   show,
   setShow,
@@ -18,22 +18,35 @@ const Input = ({
   setNtcflag,
 }) => {
   const date = moment().format("MM/DD/YYYY");
-
+  const alert = useAlert();
   const createTix = async () => {
-    try {
-      console.log("running now");
-      setShow(false);
-      window.location.reload();
-      const test = await createTicket(
-        callname,
-        callnumber,
-        gvrid,
-        notes,
-        ntcflag,
-        date
-      );
-    } catch (err) {
-      throw err;
+    let id = gvrid.toString().length;
+    let name = callname.length;
+    let number = callnumber.length;
+    console.log(typeof callnumber);
+
+    if (id === 6 && name != 0 && number === 10) {
+      try {
+        console.log("running now");
+        setShow(false);
+        // window.location.reload();
+        const test = await createTicket(
+          callname,
+          callnumber,
+          gvrid,
+          notes,
+          ntcflag,
+          date
+        );
+      } catch (err) {
+        throw err;
+      }
+    } else if (id !== 6) {
+      alert.show("Incorrect GVR ID length");
+    } else if (name == 0) {
+      alert.show("Please Enter a Name");
+    } else if (number != 10) {
+      alert.show("Please Correct Phone Number");
     }
   };
 
