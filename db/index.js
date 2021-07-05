@@ -2,17 +2,18 @@ const { Client } = require("pg");
 const bcrypt = require("bcrypt");
 const DB_NAME = "tickets";
 
-const client = new Client(
-  process.env.DATABASE_URL ||
-    `postgressql://postgres:postgres@localhost:5432/${DB_NAME}`
-);
+// const client = new Client(
+//   process.env.DATABASE_URL ||
+//     `postgressql://postgres:james@localhost:5432/${DB_NAME}`
+// );
 
-// const client = new Client({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl: {
-//     rejectUnauthorized: false,
-//   },
-// });
+//TESTING FETCH
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
 
 async function createUser({ username, password, email }) {
   try {
