@@ -37,7 +37,6 @@ ticketRouter.post("/create", async (req, res, next) => {
 ticketRouter.post("/delete", async (req, res, next) => {
   try {
     const { id } = req.body;
-    console.log("backend", id);
     const tickets = await deleteTicket(id);
   } catch ({ name, message }) {
     next({ name, message });
@@ -46,10 +45,8 @@ ticketRouter.post("/delete", async (req, res, next) => {
 
 ticketRouter.get("/search/:id", async (req, res, next) => {
   const gvrid = req.params.id;
-  console.log("tickets route", gvrid);
   try {
     const part = await searchPartsNumber(gvrid);
-    console.log(part, "Part");
     res.send({ part });
   } catch ({ name, message }) {
     next({ name, message });
@@ -57,7 +54,6 @@ ticketRouter.get("/search/:id", async (req, res, next) => {
 });
 
 ticketRouter.post("/update", async (req, res, next) => {
-  console.log("request", req.body);
   const { id, callname, callnumber, gvrid, notes, ntcflag, date } = req.body;
 
   const updateFields = {};
@@ -86,7 +82,6 @@ ticketRouter.post("/update", async (req, res, next) => {
     updateFields.date = date;
   }
 
-  console.log("fields", updateFields);
   try {
     const updatedTicket = await updateTicket(id, updateFields);
   } catch ({ name, message }) {

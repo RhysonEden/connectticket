@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Input from "../Helpers/Input";
 import Existing from "../Helpers/Existing";
 import Header from "../Helpers/Header";
 import Modal from "../Helpers/Modal";
 import getSomething from "../api/index";
-
+import IdleTimerContainer from "../Helpers/IdleTimerContainer";
 const App = () => {
   const [message, setMessage] = useState([]);
   const [show, setShow] = useState(false);
@@ -18,7 +17,6 @@ const App = () => {
   useEffect(() => {
     getSomething()
       .then((response) => {
-        console.log(response.tickets);
         setMessage(response.tickets);
       })
       .catch((error) => {
@@ -78,6 +76,7 @@ const App = () => {
         setNtcflag={setNtcflag}
         setId={setId}
       />
+      <IdleTimerContainer />
     </div>
   );
 };

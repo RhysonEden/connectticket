@@ -45,14 +45,11 @@ async function createTables() {
 
 async function dropTables() {
   try {
-    console.log("Starting to drop tables...");
     await client.query(`
       DROP TABLE IF EXISTS users;
       DROP TABLE IF EXISTS ticket;
 
       `);
-
-    console.log("Finished dropping tables!");
   } catch (error) {
     console.error("Error dropping tables!");
     throw error;
@@ -61,9 +58,7 @@ async function dropTables() {
 
 async function createInitialUsers() {
   try {
-    console.log("Starting to create users...");
     await new Promise((resolve, reject) => {
-      console.log("First User");
       bcrypt.hash("bertie99", SALT_COUNT, async function (err, hashedPassword) {
         const nels = await createUser({
           username: "nels",
@@ -71,12 +66,10 @@ async function createInitialUsers() {
           email: "test1@yahoo.com",
         });
         resolve();
-        console.log("Completed");
       });
     });
 
     await new Promise((resolve, reject) => {
-      console.log("Second User");
       bcrypt.hash("bertie99", SALT_COUNT, async function (err, hashedPassword) {
         const james = await createUser({
           username: "james",
@@ -84,12 +77,10 @@ async function createInitialUsers() {
           email: "test2@yahoo.com",
         });
         resolve();
-        console.log("Completed");
       });
     });
 
     await new Promise((resolve, reject) => {
-      console.log("Third User");
       bcrypt.hash("bertie99", SALT_COUNT, async function (err, hashedPassword) {
         const scott = await createUser({
           username: "scott",

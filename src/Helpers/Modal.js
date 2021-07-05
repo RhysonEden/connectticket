@@ -28,15 +28,15 @@ const Modal = ({
     let gid = gvrid.toString().length;
     let name = callname.length;
     let number = callnumber.length;
-    if (gid === 6 && name != 0 && number === 10) {
+    if (gid === 6 && name !== 0 && number === 10) {
       setShow(false);
       updateTix(callname, callnumber, gvrid, notes, ntcflag, date, id);
       window.location.reload();
     } else if (id !== 6) {
       alert.show("Incorrect GVR ID length");
-    } else if (name == 0) {
+    } else if (name === 0) {
       alert.show("Please Enter a Name");
-    } else if (number != 10) {
+    } else if (number !== 10) {
       alert.show("Please Correct Phone Number");
     }
   };
@@ -46,7 +46,6 @@ const Modal = ({
       <div className="modal-content">
         <div className="modal-body">
           <Input
-            setShow={setShow}
             callname={callname}
             callnumber={callnumber}
             gvrid={gvrid}

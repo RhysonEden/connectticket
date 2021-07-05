@@ -2,18 +2,18 @@ const { Client } = require("pg");
 const bcrypt = require("bcrypt");
 const DB_NAME = "tickets";
 
-// const client = new Client(
-//   process.env.DATABASE_URL ||
-//     `postgressql://postgres:james@localhost:5432/${DB_NAME}`
-// );
+const client = new Client(
+  process.env.DATABASE_URL ||
+    `postgressql://postgres:james@localhost:5432/${DB_NAME}`
+);
 
 //TESTING FETCH
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false,
+//   },
+// });
 
 async function createUser({ username, password, email }) {
   try {
@@ -33,7 +33,6 @@ async function createUser({ username, password, email }) {
 
 async function getUserByUsername(userName) {
   try {
-    console.log("Firing User by Username");
     const { rows } = await client.query(
       `
       SELECT *
@@ -51,7 +50,6 @@ async function getUserByUsername(userName) {
 }
 
 async function getUser({ username, password }) {
-  console.log("running");
   if (!username || !password) {
     return;
   }
@@ -89,7 +87,6 @@ async function getUsersByID(id) {
     `,
       [id]
     );
-    console.log("user", user);
     return user;
   } catch (error) {
     throw error;
@@ -108,7 +105,6 @@ async function getTicketById(id) {
     `,
       [id]
     );
-    console.log("user", user);
     return user;
   } catch (error) {
     throw error;
@@ -153,13 +149,10 @@ async function deleteTicket(id) {
 }
 
 async function updateTicket(id, fields = {}) {
-  console.log("running index db", fields);
   try {
     const setString = Object.keys(fields)
       .map((key, index) => `${key}=$${index + 1}`)
       .join(", ");
-    console.log(id, "id");
-    console.log(setString, "set string");
 
     try {
       const {
@@ -173,7 +166,6 @@ async function updateTicket(id, fields = {}) {
     `,
         Object.values(fields)
       );
-      console.log(rows, "result");
       return result;
     } catch (error) {
       throw error;
@@ -184,14 +176,12 @@ async function updateTicket(id, fields = {}) {
 }
 
 async function searchPartsNumber(gvrid) {
-  console.log("backend index", gvrid);
   try {
     const { rows } = await client.query(`
     SELECT *
     FROM ticket
     WHERE gvrid LIKE '%${gvrid}%'
     `);
-    console.log("rows", rows);
     return { rows };
   } catch (error) {
     throw error;

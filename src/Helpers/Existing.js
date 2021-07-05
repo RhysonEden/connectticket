@@ -21,14 +21,10 @@ const Existing = ({
     let id = parseInt(e.target.value);
     try {
       window.location.reload();
-      const del = await deleteTix(id);
+      await deleteTix(id);
     } catch (err) {
       throw err;
     }
-  };
-
-  const update = () => {
-    console.log(message);
   };
 
   return (
