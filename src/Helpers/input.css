@@ -197,6 +197,7 @@ button {
 }
 
 .buttonsother {
+  padding-top: 7px;
   display: flex;
   justify-content: space-evenly;
 }
