@@ -3,17 +3,28 @@ const bcrypt = require("bcrypt");
 const DB_NAME = "tickets";
 
 // const client = new Client(
-//   process.env.DATABASE_URL ||
-//     `postgressql://postgres:james@localhost:5432/${DB_NAME}`
+//   {
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: {
+//       rejectUnauthorized: false,
+//     },
+//   } || `postgressql://postgres:james@localhost:5432/${DB_NAME}`
 // );
 
-//TESTING FETCH
 const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  connectionString:
+    process.env.DATABASE_URL ||
+    `postgressql://postgres:james@localhost:5432/${DB_NAME}`,
+  ssl: process.env.DATABASE_URL ? true : false,
 });
+
+//TESTING FETCH
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false,
+//   },
+// });
 
 async function createUser({ username, password, email }) {
   try {
