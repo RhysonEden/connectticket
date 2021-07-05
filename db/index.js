@@ -2,13 +2,16 @@ const { Client } = require("pg");
 const bcrypt = require("bcrypt");
 const DB_NAME = "tickets";
 
+// const pool = new Pool({
+//   connectionString:
+//     process.env.DATABASE_URL ||
+//     "postgresql://postgres:<your admin password>@localhost:5432/<your db name>",
+//   ssl: process.env.DATABASE_URL ? true : false,
+// });
+
 // const client = new Client(
-//   {
-//     connectionString: process.env.DATABASE_URL,
-//     ssl: {
-//       rejectUnauthorized: false,
-//     },
-//   } || `postgressql://postgres:james@localhost:5432/${DB_NAME}`
+//   process.env.DATABASE_URL ||
+//     `postgressql://postgres:james@localhost:5432/${DB_NAME}`
 // );
 
 //TESTING FETCH
