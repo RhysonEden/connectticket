@@ -25,10 +25,10 @@ const Modal = ({
   const date = moment().format("MM/DD/YYYY");
 
   const update = () => {
-    let id = gvrid.toString().length;
+    let gid = gvrid.toString().length;
     let name = callname.length;
     let number = callnumber.length;
-    if (id === 6 && name != 0 && number === 10) {
+    if (gid === 6 && name != 0 && number === 10) {
       setShow(false);
       updateTix(callname, callnumber, gvrid, notes, ntcflag, date, id);
       window.location.reload();
