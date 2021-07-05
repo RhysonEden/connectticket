@@ -11,20 +11,13 @@ const DB_NAME = "tickets";
 //   } || `postgressql://postgres:james@localhost:5432/${DB_NAME}`
 // );
 
-const client = new Client({
-  connectionString:
-    process.env.DATABASE_URL ||
-    `postgressql://postgres:james@localhost:5432/${DB_NAME}`,
-  ssl: process.env.DATABASE_URL ? true : false,
-});
-
 //TESTING FETCH
-// const client = new Client({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl: {
-//     rejectUnauthorized: false,
-//   },
-// });
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
 
 async function createUser({ username, password, email }) {
   try {
