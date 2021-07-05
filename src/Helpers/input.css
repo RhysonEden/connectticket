@@ -47,7 +47,7 @@ button {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   background-color: #81cb2f;
   border-radius: 18px;
-  /* border: 1px solid black; */
+  border: 1px solid black;
   cursor: pointer;
   color: #ffffff;
 }
