@@ -70,6 +70,7 @@ const Input = ({
         <input
           className="form-input"
           placeholder="Caller Name"
+          type="text"
           value={callname}
           onChange={changeCallName}
         ></input>
@@ -77,6 +78,7 @@ const Input = ({
           className="form-input"
           id="link"
           placeholder="Call Back Number"
+          type="text"
           value={callnumber}
           onChange={changeCallNumber}
         ></input>
@@ -84,6 +86,7 @@ const Input = ({
           className="form-input"
           id="link"
           placeholder="GVR ID"
+          type="text"
           value={gvrid}
           onChange={changeGvrId}
         ></input>
@@ -91,6 +94,7 @@ const Input = ({
           className="form-notes"
           id="link"
           placeholder="Notes"
+          type="text"
           value={notes}
           onChange={changeNotes}
         ></textarea>
@@ -98,6 +102,7 @@ const Input = ({
           className="form-input"
           id="link"
           placeholder="Date"
+          type="text"
           value={date}
         ></input>
       </div>

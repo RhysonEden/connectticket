@@ -28,12 +28,17 @@ const Header = ({
 
   return (
     <div className="header">
-      <button onClick={clearModal}>New</button>
+      <div className="searching">
+        <button className="newbutton" onClick={clearModal}>
+          New
+        </button>
+      </div>
       <Search
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         message={message}
         setMessage={setMessage}
+        clearModal={clearModal}
       />
     </div>
   );

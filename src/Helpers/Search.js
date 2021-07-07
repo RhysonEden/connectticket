@@ -1,7 +1,13 @@
 import React from "react";
 import { getPart } from "../api";
 import { useAlert } from "react-alert";
-const Search = ({ searchInput, setSearchInput, message, setMessage }) => {
+const Search = ({
+  searchInput,
+  setSearchInput,
+  message,
+  setMessage,
+  clearModal,
+}) => {
   const alert = useAlert();
   const searchSubmit = (e) => {
     getPart(searchInput).then((resp) => {
@@ -27,7 +33,8 @@ const Search = ({ searchInput, setSearchInput, message, setMessage }) => {
   };
 
   return (
-    <div className="searchbar">
+    <>
+      {/* <div className="searchbar"> */}
       {/* <form > */}
       <input
         className="search"
@@ -36,14 +43,27 @@ const Search = ({ searchInput, setSearchInput, message, setMessage }) => {
         value={searchInput}
         onChange={handleTextChange}
       />
-      <button className="bigbutton" onClick={searchSubmit}>
-        Search
-      </button>
-      <button className="bigbutton" onClick={() => window.location.reload()}>
-        Clear
-      </button>
+      <div className="searchingbuttons">
+        <button className="bigbutton" onClick={searchSubmit}>
+          Search
+        </button>
+        <button className="bigbutton" onClick={() => window.location.reload()}>
+          Clear
+        </button>
+      </div>
+      <div className="mobilsearching">
+        <button className="newbutton" onClick={clearModal}>
+          New
+        </button>
+        <button className="newbutton" onClick={searchSubmit}>
+          Search
+        </button>
+        <button className="newbutton" onClick={() => window.location.reload()}>
+          Clear
+        </button>
+      </div>
       {/* </form> */}
-    </div>
+    </>
   );
 };
 
