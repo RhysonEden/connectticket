@@ -42,7 +42,9 @@ const Existing = ({
           <div className="hundred">Caller's Number : {mess.callnumber}</div>
           {/* <pre>GVR ID : {mess.gvrid} </pre> */}
           <CopyToClipboard text={mess.gvrid} onCopy={onCopyText}>
-            <div className="hundred">GVR ID : {mess.gvrid} </div>
+            <button className="hundredbutton">
+              GVR ID : {mess.gvrid} (Click to Copy){" "}
+            </button>
           </CopyToClipboard>
           <div className="notes">Notes : {mess.notes}</div>
           <div className="hundred">Date of Call : {mess.date}</div>
