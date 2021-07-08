@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { deleteTix } from "../api";
-
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useAlert } from "react-alert";
 const Existing = ({
   message,
   show,
@@ -17,6 +18,8 @@ const Existing = ({
   setNtcflag,
   setId,
 }) => {
+  const alert = useAlert();
+
   const removeTix = async (e) => {
     let id = parseInt(e.target.value);
     try {
@@ -27,13 +30,20 @@ const Existing = ({
     }
   };
 
+  const onCopyText = () => {
+    alert.show("Copied!");
+  };
+
   return (
     <div className="existing">
       {message.map((mess, index) => (
         <div key={index} className="card" value={mess.id}>
           <div className="hundred">Caller's Name : {mess.callname}</div>
           <div className="hundred">Caller's Number : {mess.callnumber}</div>
-          <div className="hundred">GVR ID : {mess.gvrid}</div>
+          {/* <pre>GVR ID : {mess.gvrid} </pre> */}
+          <CopyToClipboard text={mess.gvrid} onCopy={onCopyText}>
+            <div className="hundred">GVR ID : {mess.gvrid} </div>
+          </CopyToClipboard>
           <div className="notes">Notes : {mess.notes}</div>
           <div className="hundred">Date of Call : {mess.date}</div>
           <div className="buttonsother">
