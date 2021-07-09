@@ -1,6 +1,7 @@
 import React from "react";
 import { getPart } from "../api";
 import { useAlert } from "react-alert";
+import { Link, useHistory } from "react-router-dom";
 const Search = ({
   searchInput,
   setSearchInput,
@@ -9,6 +10,7 @@ const Search = ({
   clearModal,
 }) => {
   const alert = useAlert();
+  const history = useHistory();
   const searchSubmit = (e) => {
     getPart(searchInput).then((resp) => {
       let results = resp.data.part.rows;
@@ -16,18 +18,15 @@ const Search = ({
         alert.show("Nothing Found, Please Try Again");
       } else {
         setMessage(results);
+        history.push("/results");
       }
     });
-    //     if (response.data.part.length === 0) {
-    //       setMessage("Nothing found, please try again");
-    //     } else {
-    //       setMessage("");
-    //       setPartListing(response.data.part);
-    //   }
-    // });
-    // }
   };
 
+  const clearButton = (e) => {
+    history.push("/");
+    window.location.reload();
+  };
   const handleTextChange = (e) => {
     setSearchInput(e.target.value);
   };
@@ -47,7 +46,7 @@ const Search = ({
         <button className="bigbutton" onClick={searchSubmit}>
           Search
         </button>
-        <button className="bigbutton" onClick={() => window.location.reload()}>
+        <button className="bigbutton" onClick={clearButton}>
           Clear
         </button>
       </div>
@@ -55,12 +54,19 @@ const Search = ({
         <button className="newbutton" onClick={clearModal}>
           New
         </button>
-        <button className="newbutton" onClick={searchSubmit}>
-          Search
-        </button>
-        <button className="newbutton" onClick={() => window.location.reload()}>
-          Clear
-        </button>
+        <Link to="/results">
+          <button className="newbutton" onClick={searchSubmit}>
+            Search
+          </button>
+        </Link>
+        <Link to="/">
+          <button
+            className="newbutton"
+            onClick={() => window.location.reload()}
+          >
+            Clear
+          </button>
+        </Link>
       </div>
       {/* </form> */}
     </>
