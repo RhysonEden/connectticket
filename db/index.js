@@ -148,7 +148,8 @@ async function getAllTickets() {
 
 async function deleteTicket(id) {
   const { rows } = await client.query(
-    `DELETE FROM ticket
+    `UPDATE ticket
+    SET ntcflag=true
     WHERE id=$1;
   `,
     [id]

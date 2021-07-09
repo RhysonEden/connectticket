@@ -3,6 +3,7 @@ import "./input.css";
 import { createTicket } from "../api";
 import moment from "moment";
 import { useAlert } from "react-alert";
+import PhoneInput from "react-phone-number-input/input";
 const Input = ({
   show,
   setShow,
@@ -74,6 +75,14 @@ const Input = ({
           value={callname}
           onChange={changeCallName}
         ></input>
+        {/* <PhoneInput
+          className="form-input"
+          country="US"
+          placeholder="Call Back Number"
+          value={callnumber}
+          onChange={setCallNumber}
+          withCountryCallingCode={false}
+        /> */}
         <input
           className="form-input"
           id="link"

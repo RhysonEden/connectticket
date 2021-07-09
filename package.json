@@ -30,6 +30,7 @@
     "react-dom": "^16.13.1",
     "react-icons": "^4.2.0",
     "react-idle-timer": "^4.6.4",
+    "react-phone-number-input": "^3.1.23",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1"
   },

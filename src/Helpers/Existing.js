@@ -37,36 +37,42 @@ const Existing = ({
   return (
     <div className="existing">
       {message.map((mess, index) => (
-        <div key={index} className="card" value={mess.id}>
-          <div className="hundred">Caller's Name : {mess.callname}</div>
-          <div className="hundred">Caller's Number : {mess.callnumber}</div>
-          {/* <pre>GVR ID : {mess.gvrid} </pre> */}
-          <CopyToClipboard text={mess.gvrid} onCopy={onCopyText}>
-            <button className="hundredbutton">
-              GVR ID : {mess.gvrid} (Click to Copy){" "}
-            </button>
-          </CopyToClipboard>
-          <div className="notes">Notes : {mess.notes}</div>
-          <div className="hundred">Date of Call : {mess.date}</div>
-          <div className="buttonsother">
-            <button value={mess.id} onClick={removeTix}>
-              Delete
-            </button>
-            <button
-              value={mess.id}
-              onClick={() => {
-                setCallName(mess.callname);
-                setCallNumber(mess.callnumber);
-                setGvrid(mess.gvrid);
-                setNotes(mess.notes);
-                setShow(true);
-                setId(mess.id);
-              }}
-            >
-              Update
-            </button>
-          </div>
-        </div>
+        // if (mess.ntcflag === false) {
+        <>
+          {mess.ntcflag == false ? (
+            <div key={index} className="card" value={mess.id}>
+              <div className="hundred">Caller's Name : {mess.callname}</div>
+              <div className="hundred">Caller's Number : {mess.callnumber}</div>
+              {/* <pre>GVR ID : {mess.gvrid} </pre> */}
+              <CopyToClipboard text={mess.gvrid} onCopy={onCopyText}>
+                <button className="hundredbutton">
+                  GVR ID : {mess.gvrid} (Click to Copy){" "}
+                </button>
+              </CopyToClipboard>
+              <div className="notes">Notes : {mess.notes}</div>
+              <div className="hundred">Date of Call : {mess.date}</div>
+              <div className="buttonsother">
+                <button value={mess.id} onClick={removeTix}>
+                  Delete
+                </button>
+                <button
+                  value={mess.id}
+                  onClick={() => {
+                    setCallName(mess.callname);
+                    setCallNumber(mess.callnumber);
+                    setGvrid(mess.gvrid);
+                    setNotes(mess.notes);
+                    setShow(true);
+                    setId(mess.id);
+                  }}
+                >
+                  Update
+                </button>
+              </div>
+            </div>
+          ) : null}
+        </>
+        // }
       ))}
     </div>
     // </div>
