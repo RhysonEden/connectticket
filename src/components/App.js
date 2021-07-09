@@ -4,6 +4,7 @@ import Header from "../Helpers/Header";
 import Modal from "../Helpers/Modal";
 import Results from "../Helpers/Results";
 import getSomething from "../api/index";
+import Login from "./Login";
 import IdleTimerContainer from "../Helpers/IdleTimerContainer";
 import { BrowserRouter as Brouter, Switch } from "react-router-dom";
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
   const [ntcflag, setNtcflag] = useState(false);
   const [id, setId] = useState("");
   const [searchInput, setSearchInput] = useState("");
+  let user = sessionStorage.getItem("user");
   useEffect(() => {
     getSomething()
       .then((response) => {
@@ -26,47 +28,22 @@ const App = () => {
       });
   }, []);
 
-  return (
-    <Brouter>
-      <div className="app">
-        <Header
-          message={message}
-          setMessage={setMessage}
-          show={show}
-          setShow={setShow}
-          callname={callname}
-          callnumber={callnumber}
-          gvrid={gvrid}
-          notes={notes}
-          ntcflag={ntcflag}
-          setCallName={setCallName}
-          setCallNumber={setCallNumber}
-          setGvrid={setGvrid}
-          setNotes={setNotes}
-          setNtcflag={setNtcflag}
-          searchInput={searchInput}
-          setSearchInput={setSearchInput}
-        />
-        <Modal
-          show={show}
-          setShow={setShow}
-          callname={callname}
-          callnumber={callnumber}
-          gvrid={gvrid}
-          notes={notes}
-          ntcflag={ntcflag}
-          setCallName={setCallName}
-          setCallNumber={setCallNumber}
-          setGvrid={setGvrid}
-          setNotes={setNotes}
-          setNtcflag={setNtcflag}
-          id={id}
-        />
-        <Switch>
-          <Existing
-            path="/"
-            exact
-            component={Existing}
+  if (!user) {
+    return (
+      <Brouter>
+        <div>
+          <Switch>
+            <Login />
+            <IdleTimerContainer />
+          </Switch>
+        </div>
+      </Brouter>
+    );
+  } else {
+    return (
+      <Brouter>
+        <div className="app">
+          <Header
             message={message}
             setMessage={setMessage}
             show={show}
@@ -81,13 +58,10 @@ const App = () => {
             setGvrid={setGvrid}
             setNotes={setNotes}
             setNtcflag={setNtcflag}
-            setId={setId}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
           />
-          <Results
-            path="/results"
-            component={Results}
-            message={message}
-            setMessage={setMessage}
+          <Modal
             show={show}
             setShow={setShow}
             callname={callname}
@@ -100,13 +74,53 @@ const App = () => {
             setGvrid={setGvrid}
             setNotes={setNotes}
             setNtcflag={setNtcflag}
-            setId={setId}
+            id={id}
           />
-        </Switch>
-        <IdleTimerContainer />
-      </div>
-    </Brouter>
-  );
+          <Switch>
+            <Existing
+              path="/"
+              exact
+              component={Existing}
+              message={message}
+              setMessage={setMessage}
+              show={show}
+              setShow={setShow}
+              callname={callname}
+              callnumber={callnumber}
+              gvrid={gvrid}
+              notes={notes}
+              ntcflag={ntcflag}
+              setCallName={setCallName}
+              setCallNumber={setCallNumber}
+              setGvrid={setGvrid}
+              setNotes={setNotes}
+              setNtcflag={setNtcflag}
+              setId={setId}
+            />
+            <Results
+              path="/results"
+              component={Results}
+              message={message}
+              setMessage={setMessage}
+              show={show}
+              setShow={setShow}
+              callname={callname}
+              callnumber={callnumber}
+              gvrid={gvrid}
+              notes={notes}
+              ntcflag={ntcflag}
+              setCallName={setCallName}
+              setCallNumber={setCallNumber}
+              setGvrid={setGvrid}
+              setNotes={setNotes}
+              setNtcflag={setNtcflag}
+              setId={setId}
+            />
+          </Switch>
+          <IdleTimerContainer />
+        </div>
+      </Brouter>
+    );
+  }
 };
-
 export default App;

@@ -118,7 +118,19 @@ button {
 .modal-title {
   margin: 0;
 }
-
+.pagetwo {
+  display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login {
+  height: 40px;
+  width: 250px;
+  margin: 10px;
+  border: 1px solid black;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
 .modal-body {
   display: flex;
   padding: 10px;
@@ -186,6 +198,11 @@ button {
   input[type="tel"],
   input[type="url"] {
     font-size: 16px;
+  }
+
+  .pagetwo {
+    margin-left: -3px;
+    height: 215px;
   }
 
   .header {

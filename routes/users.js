@@ -3,21 +3,21 @@ const usersRouter = apiRouter.Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const {
+  getAdminByUsername,
   createUser,
   getUserByUsername,
   getUser,
   getAllUsers,
+  updateUser,
+  adminUpdate,
 } = require("../db");
 const SALT_COUNT = 10;
+const { JWT_SECRET } = process.env;
 
 usersRouter.get("/", async (req, res, next) => {
   try {
-    const users = await getUserByUsername(james);
-    // getAllUsers();
-    res.send({
-      message: "Users is under construction!",
-    });
-    // res.send({ users });
+    const users = await getAllUsers();
+    res.send({ users });
   } catch ({ name, message }) {
     next({ name, message });
   }
@@ -25,6 +25,7 @@ usersRouter.get("/", async (req, res, next) => {
 
 usersRouter.get("/getUserInfo", async (req, res, next) => {
   try {
+    req.user;
     if (req.user) {
       res.send({ user: req.user });
     }
@@ -33,9 +34,20 @@ usersRouter.get("/getUserInfo", async (req, res, next) => {
   }
 });
 
+usersRouter.get("/:id", async (req, res, next) => {
+  const admin = req.params.id;
+  try {
+    const name = await getAdminByUsername(admin);
+    res.send({ name });
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
+
 usersRouter.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
-
+  req.body;
+  console.log("login started", process.env.JWT_SECRET);
   if (!username || !password) {
     next({
       name: "MissingUserNameOrPassword",
@@ -45,6 +57,7 @@ usersRouter.post("/login", async (req, res, next) => {
 
   try {
     const user = await getUser({ username, password });
+    process.env.JWT_SECRET;
     if (!user) {
       next({
         name: "WrongUserNameOrPassword",
@@ -59,6 +72,7 @@ usersRouter.post("/login", async (req, res, next) => {
       res.send({ message: "you're logged in!", token, user });
     }
   } catch (error) {
+    console.error(error);
     next(error);
   }
 });
@@ -83,8 +97,9 @@ usersRouter.post("/register", async (req, res, next) => {
           username,
           password: hashedPassword,
           email,
-          seller: false,
+          admin: false,
         });
+        ("bcrypt ending");
         if (err) {
           next(err);
         } else {
@@ -102,4 +117,37 @@ usersRouter.post("/register", async (req, res, next) => {
   }
 });
 
+usersRouter.post("/update", async (req, res, next) => {
+  ("User Update Route");
+  try {
+    const { username, password } = req.body;
+    await new Promise((resolve, reject) => {
+      bcrypt.hash(password, SALT_COUNT, async function (err, hashedPassword) {
+        const user = await updateUser({
+          username: username,
+          password: hashedPassword,
+        });
+      });
+      resolve();
+    });
+    res.send({ message: "Password Changed" });
+  } catch (error) {
+    next(error);
+  }
+});
+
+usersRouter.post("/admin", async (req, res, next) => {
+  ("User Update Route");
+  try {
+    const { username, admin } = req.body;
+
+    const user = await adminUpdate({
+      username: username,
+      admin: admin,
+    });
+    res.send({ message: "Admin Updated" });
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = usersRouter;

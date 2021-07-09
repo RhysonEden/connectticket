@@ -28,15 +28,6 @@ async function createTables() {
           password varchar NOT NULL,
           email varchar NOT NULL
         );
-        CREATE TABLE ticket (
-          id SERIAL PRIMARY KEY,
-          callname varchar NOT NULL,
-          callnumber varchar NOT NULL,
-          gvrid varchar NOT NULL,
-          notes varchar NOT NULL,
-          ntcflag boolean NOT NULL,
-          date varchar NOT NULL
-        )
       `);
   } catch (error) {
     throw error;
@@ -47,8 +38,6 @@ async function dropTables() {
   try {
     await client.query(`
       DROP TABLE IF EXISTS users;
-      DROP TABLE IF EXISTS ticket;
-
       `);
   } catch (error) {
     console.error("Error dropping tables!");
@@ -59,31 +48,51 @@ async function dropTables() {
 async function createInitialUsers() {
   try {
     await new Promise((resolve, reject) => {
-      bcrypt.hash("bertie99", SALT_COUNT, async function (err, hashedPassword) {
-        const nels = await createUser({
-          username: "nels",
-          password: hashedPassword,
-          email: "test1@yahoo.com",
-        });
-        resolve();
-      });
+      bcrypt.hash(
+        "SocialD123",
+        SALT_COUNT,
+        async function (err, hashedPassword) {
+          const nels = await createUser({
+            username: "nels",
+            password: hashedPassword,
+            email: "test1@yahoo.com",
+          });
+          resolve();
+        }
+      );
     });
 
     await new Promise((resolve, reject) => {
-      bcrypt.hash("bertie99", SALT_COUNT, async function (err, hashedPassword) {
-        const james = await createUser({
-          username: "james",
-          password: hashedPassword,
-          email: "test2@yahoo.com",
-        });
-        resolve();
-      });
+      bcrypt.hash(
+        "K@elyn819",
+        SALT_COUNT,
+        async function (err, hashedPassword) {
+          const james = await createUser({
+            username: "james",
+            password: hashedPassword,
+            email: "test2@yahoo.com",
+          });
+          resolve();
+        }
+      );
     });
 
     await new Promise((resolve, reject) => {
-      bcrypt.hash("bertie99", SALT_COUNT, async function (err, hashedPassword) {
+      bcrypt.hash("gft2021", SALT_COUNT, async function (err, hashedPassword) {
         const scott = await createUser({
           username: "scott",
+          password: hashedPassword,
+          email: "test3@yahoo.com",
+        });
+        resolve();
+        console.log("Completed");
+      });
+    });
+
+    await new Promise((resolve, reject) => {
+      bcrypt.hash("gft2021", SALT_COUNT, async function (err, hashedPassword) {
+        const josh = await createUser({
+          username: "josh",
           password: hashedPassword,
           email: "test3@yahoo.com",
         });
@@ -167,8 +176,8 @@ async function testDB() {
     await dropTables();
     await createTables();
     await createInitialUsers();
-    await buildTicket(callname, callnumber, gvrid, notes, ntcflag, date);
-    await testDelete(1);
+    // await buildTicket(callname, callnumber, gvrid, notes, ntcflag, date);
+    // await testDelete(1);
     const userNels = await getUserByUsername("nels");
     const userJames = await getUserByUsername("james");
     const userScott = await getUserByUsername("scott");
