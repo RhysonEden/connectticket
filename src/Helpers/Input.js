@@ -19,6 +19,7 @@ const Input = ({
   setNtcflag,
 }) => {
   const date = moment().format("MM/DD/YYYY");
+  let user = sessionStorage.getItem("user");
   const alert = useAlert();
   const createTix = async () => {
     let id = gvrid.toString().length;
@@ -29,7 +30,15 @@ const Input = ({
       try {
         setShow(false);
         window.location.reload();
-        await createTicket(callname, callnumber, gvrid, notes, ntcflag, date);
+        await createTicket(
+          callname,
+          callnumber,
+          gvrid,
+          notes,
+          ntcflag,
+          date,
+          user
+        );
       } catch (err) {
         throw err;
       }
@@ -116,8 +125,12 @@ const Input = ({
         ></input>
       </div>
       <div className="buttons">
-        <button onClick={clearButton}>Clear</button>
-        <button onClick={createTix}>Submit</button>
+        <button className="modal-button" onClick={clearButton}>
+          Clear
+        </button>
+        <button className="modal-button" onClick={createTix}>
+          Submit
+        </button>
       </div>
     </div>
   );

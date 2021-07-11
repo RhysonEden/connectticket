@@ -20,14 +20,16 @@ ticketRouter.get("/", async (req, res, next) => {
 
 ticketRouter.post("/create", async (req, res, next) => {
   try {
-    const { callname, callnumber, gvrid, notes, ntcflag, date } = req.body;
+    const { callname, callnumber, gvrid, notes, ntcflag, date, user } =
+      req.body;
     const tickets = await createTicket(
       callname,
       callnumber,
       gvrid,
       notes,
       ntcflag,
-      date
+      date,
+      user
     );
   } catch ({ name, message }) {
     next({ name, message });

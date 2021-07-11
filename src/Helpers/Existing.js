@@ -19,7 +19,6 @@ const Existing = ({
   setId,
 }) => {
   const alert = useAlert();
-
   const removeTix = async (e) => {
     let id = parseInt(e.target.value);
     try {
@@ -37,7 +36,6 @@ const Existing = ({
   return (
     <div className="existing">
       {message.map((mess, index) => (
-        // if (mess.ntcflag === false) {
         <>
           {mess.ntcflag == false ? (
             <div key={index} className="card" value={mess.id}>
@@ -51,6 +49,7 @@ const Existing = ({
               </CopyToClipboard>
               <div className="notes">Notes : {mess.notes}</div>
               <div className="hundred">Date of Call : {mess.date}</div>
+              <div className="hundred">Created By : {mess.userid}</div>
               <div className="buttonsother">
                 <button value={mess.id} onClick={removeTix}>
                   Delete

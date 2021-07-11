@@ -138,7 +138,10 @@ button {
   border-bottom: 1px solid #eee;
   justify-content: space-between;
 }
-
+.user {
+  display: flex;
+  justify-content: space-between;
+}
 .buttons {
   display: flex;
   justify-content: space-between;

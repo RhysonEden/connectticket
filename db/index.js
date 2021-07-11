@@ -120,14 +120,23 @@ async function getTicketById(id) {
   }
 }
 
-async function createTicket(callname, callnumber, gvrid, notes, ntcflag, date) {
+async function createTicket(
+  callname,
+  callnumber,
+  gvrid,
+  notes,
+  ntcflag,
+  date,
+  user
+) {
+  console.log("Create", user);
   try {
     const result = await client.query(
       `
-      INSERT INTO ticket(callname, callnumber, gvrid, notes, ntcflag, date)
-      VALUES ($1, $2, $3, $4, $5, $6);
+      INSERT INTO ticket(callname, callnumber, gvrid, notes, ntcflag, date, userid)
+      VALUES ($1, $2, $3, $4, $5, $6, $7);
     `,
-      [callname, callnumber, gvrid, notes, ntcflag, date]
+      [callname, callnumber, gvrid, notes, ntcflag, date, user]
     );
 
     return result;

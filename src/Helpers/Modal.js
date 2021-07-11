@@ -23,14 +23,15 @@ const Modal = ({
     return null;
   }
   const date = moment().format("MM/DD/YYYY");
-
+  let user = sessionStorage.getItem("user");
   const update = () => {
+    let user = sessionStorage.getItem("user");
     let gid = gvrid.toString().length;
     let name = callname.length;
     let number = callnumber.length;
     if (gid === 6 && name !== 0 && number === 10) {
       setShow(false);
-      updateTix(callname, callnumber, gvrid, notes, ntcflag, date, id);
+      updateTix(callname, callnumber, gvrid, notes, ntcflag, date, id, user);
       window.location.reload();
     } else if (id !== 6) {
       alert.show("Incorrect GVR ID length");
@@ -57,6 +58,7 @@ const Modal = ({
             setGvrid={setGvrid}
             setNotes={setNotes}
             setNtcflag={setNtcflag}
+            user={user}
           />
         </div>
         <div className="modal-footer">

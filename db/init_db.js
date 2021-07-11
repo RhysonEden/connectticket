@@ -18,7 +18,7 @@ let gvrid = "896543";
 let notes = "Testing the notes and stuff";
 let ntcflag = false;
 let date = "11/12/1980";
-
+let user = "james";
 async function createTables() {
   try {
     await client.query(`
@@ -27,6 +27,16 @@ async function createTables() {
           username varchar UNIQUE NOT NULL,
           password varchar NOT NULL,
           email varchar NOT NULL
+        );
+        CREATE TABLE ticket (
+          id SERIAL PRIMARY KEY,
+          callname varchar,
+          callnumber varchar,
+          gvrid varchar,
+          notes varchar,
+          ntcflag boolean,
+          date varchar,
+          userid varchar
         );
       `);
   } catch (error) {
@@ -38,6 +48,7 @@ async function dropTables() {
   try {
     await client.query(`
       DROP TABLE IF EXISTS users;
+      DROP TABLE IF EXISTS ticket;
       `);
   } catch (error) {
     console.error("Error dropping tables!");
@@ -108,7 +119,16 @@ async function createInitialUsers() {
   }
 }
 
-async function buildTicket(callname, callnumber, gvrid, notes, ntcflag, date) {
+async function buildTicket(
+  callname,
+  callnumber,
+  gvrid,
+  notes,
+  ntcflag,
+  date,
+  user
+) {
+  console.log("Starting to build tickets");
   try {
     const ticket1 = await createTicket(
       callname,
@@ -116,7 +136,8 @@ async function buildTicket(callname, callnumber, gvrid, notes, ntcflag, date) {
       gvrid,
       notes,
       ntcflag,
-      date
+      date,
+      user
     );
     const ticket2 = await createTicket(
       callname,
@@ -124,7 +145,8 @@ async function buildTicket(callname, callnumber, gvrid, notes, ntcflag, date) {
       gvrid,
       notes,
       ntcflag,
-      date
+      date,
+      user
     );
   } catch (error) {
     throw error;
@@ -147,6 +169,7 @@ async function testUpdate() {
   ntcflag = false;
   date = "07/02/2021";
   id = 2;
+  user = "james";
   try {
     let del = await updateTicket(
       callname,
@@ -155,7 +178,8 @@ async function testUpdate() {
       notes,
       ntcflag,
       date,
-      id
+      id,
+      user
     );
   } catch (error) {
     throw error;
@@ -176,8 +200,9 @@ async function testDB() {
     await dropTables();
     await createTables();
     await createInitialUsers();
-    // await buildTicket(callname, callnumber, gvrid, notes, ntcflag, date);
+    // await buildTicket(callname, callnumber, gvrid, notes, ntcflag, date, user);
     // await testDelete(1);
+    // await testUpdate();
     const userNels = await getUserByUsername("nels");
     const userJames = await getUserByUsername("james");
     const userScott = await getUserByUsername("scott");

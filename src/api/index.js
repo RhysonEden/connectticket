@@ -15,7 +15,8 @@ export async function createTicket(
   gvrid,
   notes,
   ntcflag,
-  date
+  date,
+  user
 ) {
   try {
     await axios.post("api/tickets/create", {
@@ -25,6 +26,7 @@ export async function createTicket(
       notes,
       ntcflag,
       date,
+      user,
     });
   } catch (error) {
     throw error;
