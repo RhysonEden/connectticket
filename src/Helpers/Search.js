@@ -22,10 +22,13 @@ const Search = ({
       }
     });
   };
+  const pushButton = (e) => {
+    history.push("/results");
+  };
 
   const clearButton = (e) => {
     history.push("/");
-    window.location.reload();
+    // window.location.reload();
   };
   const handleTextChange = (e) => {
     setSearchInput(e.target.value);
@@ -45,6 +48,9 @@ const Search = ({
       <div className="searchingbuttons">
         <button className="bigbutton" onClick={searchSubmit}>
           Search
+        </button>
+        <button className="bigbutton" onClick={pushButton}>
+          Show All
         </button>
         <button className="bigbutton" onClick={clearButton}>
           Clear

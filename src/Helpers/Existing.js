@@ -52,7 +52,7 @@ const Existing = ({
               <div className="hundred">Created By : {mess.userid}</div>
               <div className="buttonsother">
                 <button value={mess.id} onClick={removeTix}>
-                  Delete
+                  Archive
                 </button>
                 <button
                   value={mess.id}

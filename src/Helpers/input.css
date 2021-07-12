@@ -81,6 +81,7 @@ button {
   text-align: center;
   width: 25%;
   border: 1px solid black;
+  margin-right: 25px;
   height: 40px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
