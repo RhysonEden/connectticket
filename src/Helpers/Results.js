@@ -50,6 +50,11 @@ const Existing = ({
           <div className="notes">Notes : {mess.notes}</div>
           <div className="hundred">Date of Call : {mess.date}</div>
           <div className="hundred">Created By : {mess.userid}</div>
+          {mess.ntcflag == false ? (
+            <div className="hundred">Ticket Status : Open </div>
+          ) : (
+            <div className="hundred">Ticket Status : Archived</div>
+          )}
           <div className="buttonsother">
             <button
               value={mess.id}
