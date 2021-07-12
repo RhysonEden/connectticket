@@ -225,7 +225,12 @@ button {
     flex-direction: row;
   }
   .search {
+    text-align: center;
     width: 100%;
+    border: 1px solid black;
+    height: 40px;
+    margin-left: 25px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   }
   .newbutton {
     border: 1px solid black;
