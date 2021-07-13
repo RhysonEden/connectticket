@@ -25,6 +25,10 @@ button {
   align-content: center;
 }
 
+.notes {
+  height: 200px;
+  overflow-y: auto;
+}
 .card {
   display: flex;
   flex-direction: column;
