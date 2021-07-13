@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { deleteTix } from "../api";
+import { openTix } from "../api";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useAlert } from "react-alert";
 const Existing = ({
@@ -20,11 +21,11 @@ const Existing = ({
 }) => {
   const alert = useAlert();
 
-  const removeTix = async (e) => {
+  const readdTix = async (e) => {
     let id = parseInt(e.target.value);
     try {
       window.location.reload();
-      await deleteTix(id);
+      await openTix(id);
     } catch (err) {
       throw err;
     }
@@ -57,6 +58,7 @@ const Existing = ({
           )}
           <div className="buttonsother">
             <button
+              className="wide"
               value={mess.id}
               onClick={() => {
                 setCallName(mess.callname);
@@ -68,6 +70,9 @@ const Existing = ({
               }}
             >
               Update
+            </button>
+            <button className="wide" value={mess.id} onClick={readdTix}>
+              Re-Open
             </button>
           </div>
         </div>

@@ -167,6 +167,19 @@ async function deleteTicket(id) {
   return rows;
 }
 
+async function openTicket(id) {
+  console.log("opening", id);
+  const { rows } = await client.query(
+    `UPDATE ticket
+    SET ntcflag=false
+    WHERE id=$1;
+  `,
+    [id]
+  );
+
+  return rows;
+}
+
 async function updateTicket(id, fields = {}) {
   try {
     const setString = Object.keys(fields)
@@ -220,4 +233,5 @@ module.exports = {
   getTicketById,
   updateTicket,
   searchPartsNumber,
+  openTicket,
 };

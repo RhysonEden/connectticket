@@ -7,6 +7,7 @@ const {
   deleteTicket,
   updateTicket,
   searchPartsNumber,
+  openTicket,
 } = require("../db");
 
 ticketRouter.get("/", async (req, res, next) => {
@@ -40,6 +41,15 @@ ticketRouter.post("/delete", async (req, res, next) => {
   try {
     const { id } = req.body;
     const tickets = await deleteTicket(id);
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
+
+ticketRouter.post("/open", async (req, res, next) => {
+  try {
+    const { id } = req.body;
+    const tickets = await openTicket(id);
   } catch ({ name, message }) {
     next({ name, message });
   }

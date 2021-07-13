@@ -41,6 +41,14 @@ export async function deleteTix(id) {
   }
 }
 
+export async function openTix(id) {
+  try {
+    await axios.post("api/tickets/open", { id });
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function updateTix(
   callname,
   callnumber,

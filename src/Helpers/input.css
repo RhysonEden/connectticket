@@ -154,6 +154,10 @@ button {
   justify-content: space-evenly;
 }
 
+.wide {
+  width: 75px;
+}
+
 .new {
   display: flex;
   flex-direction: column;

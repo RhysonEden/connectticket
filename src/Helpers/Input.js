@@ -28,13 +28,14 @@ const Input = ({
 
     if (id === 6 && name !== 0 && number === 10) {
       try {
+        let finalnote = date + " " + notes;
         setShow(false);
         window.location.reload();
         await createTicket(
           callname,
           callnumber,
           gvrid,
-          notes,
+          finalnote,
           ntcflag,
           date,
           user
