@@ -71,9 +71,13 @@ const Existing = ({
             >
               Update
             </button>
-            <button className="wide" value={mess.id} onClick={readdTix}>
-              Re-Open
-            </button>
+            {mess.ntcflag == true ? (
+              <button className="wide" value={mess.id} onClick={readdTix}>
+                Re-Open
+              </button>
+            ) : (
+              <div></div>
+            )}
           </div>
         </div>
 
