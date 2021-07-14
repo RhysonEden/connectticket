@@ -145,6 +145,7 @@ async function createTicket(
 }
 
 async function getAllTickets() {
+  console.log("Hi Nels!!");
   const { rows } = await client.query(
     `SELECT *
     FROM ticket;
