@@ -129,7 +129,6 @@ async function createTicket(
   date,
   user
 ) {
-  console.log("Create", user);
   try {
     const result = await client.query(
       `
@@ -138,7 +137,7 @@ async function createTicket(
     `,
       [callname, callnumber, gvrid, notes, ntcflag, date, user]
     );
-
+    console.log("Result", result);
     return result;
   } catch (error) {
     throw error;
