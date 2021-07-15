@@ -211,10 +211,24 @@ button {
   input[type="url"] {
     font-size: 16px;
   }
-
-  .pagetwo {
+  /* .center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  } */
+  .login {
+    width: 75%;
+  }
+  .pagetwo,
+  .inputWithButtonTwo {
+    flex-direction: column;
+    width: 100%;
     margin-left: -3px;
     height: 215px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
   }
 
   .header {
@@ -242,7 +256,7 @@ button {
   }
   .newbutton {
     border: 1px solid black;
-    width: 50px;
+    width: 63px;
     margin-left: 15px;
     margin-right: 15px;
     margin-top: 5px;

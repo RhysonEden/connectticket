@@ -44,28 +44,35 @@ function Login({ main, setMain }) {
   };
 
   return (
-    <div className="pagetwo">
-      <form className="inputWithButtonTwo">
-        <input
-          className="login"
-          type="text"
-          id="link"
-          value={user}
-          placeholder="Enter Username"
-          onChange={changeUser}
-        ></input>
-        <input
-          className="login"
-          type="password"
-          id="comment"
-          value={password}
-          placeholder="Enter Password"
-          onChange={changePassword}
-        ></input>
-        <button className="buttonfirstlogin" onClick={handleSubmit}>
+    <div className="center">
+      <div className="pagetwo">
+        <form className="inputWithButtonTwo">
+          <input
+            className="login"
+            type="text"
+            id="link"
+            value={user}
+            placeholder="Enter Username"
+            onChange={changeUser}
+          ></input>
+          <input
+            className="login"
+            type="password"
+            id="comment"
+            value={password}
+            placeholder="Enter Password"
+            onChange={changePassword}
+          ></input>
+          <button className="newbutton" onClick={handleSubmit}>
+            Submit
+          </button>
+        </form>
+      </div>
+      <div className="centerbutton">
+        {/* <button className="newbutton" onClick={handleSubmit}>
           Submit
-        </button>
-      </form>
+        </button> */}
+      </div>
     </div>
   );
 }

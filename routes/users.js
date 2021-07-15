@@ -47,7 +47,7 @@ usersRouter.get("/:id", async (req, res, next) => {
 usersRouter.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
   req.body;
-  console.log("login started", process.env.JWT_SECRET);
+  console.log(username, "is logging in!");
   if (!username || !password) {
     next({
       name: "MissingUserNameOrPassword",

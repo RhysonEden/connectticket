@@ -21,7 +21,9 @@ const App = () => {
   useEffect(() => {
     getSomething()
       .then((response) => {
-        setMessage(response.tickets);
+        // console.log(response.tickets.date);
+        let tickets = response.tickets;
+        setMessage(tickets);
       })
       .catch((error) => {
         setMessage(error.message);
@@ -31,12 +33,10 @@ const App = () => {
   if (!user) {
     return (
       <Brouter>
-        <div>
-          <Switch>
-            <Login />
-            <IdleTimerContainer />
-          </Switch>
-        </div>
+        <Switch>
+          <Login />
+          <IdleTimerContainer />
+        </Switch>
       </Brouter>
     );
   } else {

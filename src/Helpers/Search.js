@@ -60,6 +60,9 @@ const Search = ({
         <button className="newbutton" onClick={clearModal}>
           New
         </button>
+        <button className="newbutton" onClick={pushButton}>
+          Show All
+        </button>
         <Link to="/results">
           <button className="newbutton" onClick={searchSubmit}>
             Search
