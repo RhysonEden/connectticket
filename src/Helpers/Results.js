@@ -35,9 +35,18 @@ const Existing = ({
     alert.show("Copied!");
   };
 
+  let post = message.sort(function compare(a, b) {
+    console.log(a.date, b.date);
+    let dateA = new Date(a.date);
+    let dateB = new Date(b.date);
+    return dateA - dateB;
+  });
+
+  let main = post.reverse();
+
   return (
     <div className="existing">
-      {message.map((mess, index) => (
+      {main.map((mess, index) => (
         // if (mess.ntcflag === false) {
         <div key={index} className="card" value={mess.id}>
           <div className="hundred">Caller's Name : {mess.callname}</div>

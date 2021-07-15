@@ -50,7 +50,6 @@ const Existing = ({
             <div key={index} className="card" value={mess.id}>
               <div className="hundred">Caller's Name : {mess.callname}</div>
               <div className="hundred">Caller's Number : {mess.callnumber}</div>
-              {/* <pre>GVR ID : {mess.gvrid} </pre> */}
               <CopyToClipboard text={mess.gvrid} onCopy={onCopyText}>
                 <button className="hundredbutton">
                   GVR ID : {mess.gvrid} (Click to Copy){" "}
