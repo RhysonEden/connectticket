@@ -34,7 +34,6 @@ const Existing = ({
   };
 
   let post = message.sort(function compare(a, b) {
-    console.log(a.date, b.date);
     let dateA = new Date(a.date);
     let dateB = new Date(b.date);
     return dateA - dateB;

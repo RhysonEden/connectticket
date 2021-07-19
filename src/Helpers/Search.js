@@ -28,7 +28,7 @@ const Search = ({
 
   const clearButton = (e) => {
     history.push("/");
-    // window.location.reload();
+    window.location.reload();
   };
   const handleTextChange = (e) => {
     setSearchInput(e.target.value);
