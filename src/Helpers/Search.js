@@ -30,6 +30,10 @@ const Search = ({
     history.push("/");
     window.location.reload();
   };
+  const contactButton = (e) => {
+    history.push("/email");
+    // window.location.reload();
+  };
   const handleTextChange = (e) => {
     setSearchInput(e.target.value);
   };
@@ -54,6 +58,9 @@ const Search = ({
         </button>
         <button className="bigbutton" onClick={clearButton}>
           Clear
+        </button>
+        <button className="bigbuttonextra" onClick={contactButton}>
+          Contacted
         </button>
       </div>
       <div className="mobilsearching">

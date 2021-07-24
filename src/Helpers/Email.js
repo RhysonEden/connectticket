@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { deleteTix } from "../api";
+import { openTix } from "../api";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useAlert } from "react-alert";
 import { BiEnvelopeOpen, BiBlock } from "react-icons/bi";
-const Existing = ({
+const Email = ({
   message,
   show,
   setShow,
@@ -18,21 +19,14 @@ const Existing = ({
   setNotes,
   setNtcflag,
   setId,
-  gpid,
-  setGpid,
-  email,
-  setEmail,
-  setGpcust,
-  gpcust,
-  checker,
-  setChecker,
 }) => {
   const alert = useAlert();
-  const removeTix = async (e) => {
+
+  const readdTix = async (e) => {
     let id = parseInt(e.target.value);
     try {
       window.location.reload();
-      await deleteTix(id);
+      await openTix(id);
     } catch (err) {
       throw err;
     }
@@ -43,6 +37,7 @@ const Existing = ({
   };
 
   let post = message.sort(function compare(a, b) {
+    console.log(a.date, b.date);
     let dateA = new Date(a.date);
     let dateB = new Date(b.date);
     return dateA - dateB;
@@ -54,7 +49,7 @@ const Existing = ({
     <div className="existing">
       {main.map((mess, index) => (
         <>
-          {mess.ntcflag == false ? (
+          {mess.email !== "" ? (
             <div key={index} className="card" value={mess.id}>
               <div className="hundred">Caller's Name : {mess.callname}</div>
               <div className="hundred">Caller's Number : {mess.callnumber}</div>
@@ -87,10 +82,8 @@ const Existing = ({
                 <div className="hundred">Ticket Status : Archived</div>
               )}
               <div className="buttonsother">
-                <button value={mess.id} onClick={removeTix}>
-                  Archive
-                </button>
                 <button
+                  className="wide"
                   value={mess.id}
                   onClick={() => {
                     setCallName(mess.callname);
@@ -99,16 +92,22 @@ const Existing = ({
                     setNotes(mess.notes);
                     setShow(true);
                     setId(mess.id);
-                    setGpid(mess.gpid);
-                    setEmail(mess.email);
-                    setGpcust(mess.gpcust);
                   }}
                 >
                   Update
                 </button>
+                {mess.ntcflag == true ? (
+                  <button className="wide" value={mess.id} onClick={readdTix}>
+                    Re-Open
+                  </button>
+                ) : (
+                  <div></div>
+                )}
               </div>
             </div>
-          ) : null}
+          ) : (
+            <div></div>
+          )}
         </>
         // }
       ))}
@@ -117,4 +116,4 @@ const Existing = ({
   );
 };
 
-export default Existing;
+export default Email;

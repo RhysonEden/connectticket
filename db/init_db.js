@@ -12,13 +12,16 @@ const {
   updateTicket,
 } = require("./index");
 
-let callname = "John Doe";
-let callnumber = "(904)555-1234";
+let callname = "John Two";
+let callnumber = "9045551234";
 let gvrid = "896543";
 let notes = "Testing the notes and stuff";
 let ntcflag = false;
 let date = "11/12/1980";
 let user = "james";
+let email = "";
+let gpid = "202123-0089";
+let gpcust = "AHA0001";
 async function createTables() {
   try {
     await client.query(`
@@ -28,7 +31,19 @@ async function createTables() {
           password varchar NOT NULL,
           email varchar NOT NULL
         );
-
+        CREATE TABLE ticket (
+          id SERIAL PRIMARY KEY,
+          callname varchar,
+          callnumber varchar,
+          gvrid varchar,
+          notes varchar,
+          ntcflag boolean,
+          date varchar,
+          userid varchar,
+          email varchar,
+          gpid varchar,
+          gpcust varchar
+);
       `);
   } catch (error) {
     throw error;
@@ -50,7 +65,7 @@ async function dropTables() {
   try {
     await client.query(`
       DROP TABLE IF EXISTS users;
-      
+      DROP TABLE IF EXISTS ticket;
       `);
   } catch (error) {
     console.error("Error dropping tables!");
@@ -128,7 +143,10 @@ async function buildTicket(
   notes,
   ntcflag,
   date,
-  user
+  user,
+  email,
+  gpid,
+  gpcust
 ) {
   console.log("Starting to build tickets");
   try {
@@ -139,7 +157,10 @@ async function buildTicket(
       notes,
       ntcflag,
       date,
-      user
+      user,
+      email,
+      gpid,
+      gpcust
     );
     const ticket2 = await createTicket(
       callname,
@@ -148,7 +169,10 @@ async function buildTicket(
       notes,
       ntcflag,
       date,
-      user
+      user,
+      email,
+      gpid,
+      gpcust
     );
   } catch (error) {
     throw error;
@@ -200,9 +224,21 @@ async function rebuildDB() {
 async function testDB() {
   try {
     await dropTables();
+    console.log(callname, email, gpid, "new Stuff");
     await createTables();
     await createInitialUsers();
-    // await buildTicket(callname, callnumber, gvrid, notes, ntcflag, date, user);
+    await buildTicket(
+      callname,
+      callnumber,
+      gvrid,
+      notes,
+      ntcflag,
+      date,
+      user,
+      email,
+      gpid,
+      gpcust
+    );
     // await testDelete(1);
     // await testUpdate();
     const userNels = await getUserByUsername("nels");

@@ -17,6 +17,12 @@ const Modal = ({
   setNotes,
   setNtcflag,
   id,
+  gpid,
+  setGpid,
+  email,
+  setEmail,
+  gpcust,
+  setGpcust,
 }) => {
   const alert = useAlert();
   if (!show) {
@@ -24,14 +30,42 @@ const Modal = ({
   }
   const date = moment().format("MM/DD/YYYY");
   let user = sessionStorage.getItem("user");
+
   const update = () => {
     let user = sessionStorage.getItem("user");
     let gid = gvrid.toString().length;
     let name = callname.length;
     let number = callnumber.length;
+    console.log("email", email);
     if (gid === 6 && name !== 0 && number === 10) {
       setShow(false);
-      updateTix(callname, callnumber, gvrid, notes, ntcflag, date, id, user);
+      console.log(
+        callname,
+        callnumber,
+        gvrid,
+        notes,
+        ntcflag,
+        date,
+        id,
+        user,
+        email,
+        gpid,
+        gpcust,
+        "updates"
+      );
+      updateTix(
+        callname,
+        callnumber,
+        gvrid,
+        notes,
+        ntcflag,
+        date,
+        id,
+        user,
+        email,
+        gpid,
+        gpcust
+      );
       window.location.reload();
     } else if (id !== 6) {
       alert.show("Incorrect GVR ID length");
@@ -59,6 +93,12 @@ const Modal = ({
             setNotes={setNotes}
             setNtcflag={setNtcflag}
             user={user}
+            gpid={gpid}
+            setGpid={setGpid}
+            email={email}
+            setEmail={setEmail}
+            gpcust={gpcust}
+            setGpcust={setGpcust}
           />
         </div>
         <div className="modal-footer">

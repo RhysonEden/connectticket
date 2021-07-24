@@ -3,6 +3,7 @@ import { deleteTix } from "../api";
 import { openTix } from "../api";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useAlert } from "react-alert";
+import { BiEnvelopeOpen, BiBlock } from "react-icons/bi";
 const Existing = ({
   message,
   show,
@@ -47,19 +48,30 @@ const Existing = ({
   return (
     <div className="existing">
       {main.map((mess, index) => (
-        // if (mess.ntcflag === false) {
         <div key={index} className="card" value={mess.id}>
           <div className="hundred">Caller's Name : {mess.callname}</div>
           <div className="hundred">Caller's Number : {mess.callnumber}</div>
-          {/* <pre>GVR ID : {mess.gvrid} </pre> */}
+          <div className="hundred">GP Customer Number : {mess.gpcust}</div>
           <CopyToClipboard text={mess.gvrid} onCopy={onCopyText}>
             <button className="hundredbutton">
               GVR ID : {mess.gvrid} (Click to Copy){" "}
             </button>
           </CopyToClipboard>
+          <CopyToClipboard text={mess.gpid} onCopy={onCopyText}>
+            <button className="hundredbutton">
+              GP Ticket Number : {mess.gpid} (Click to Copy){" "}
+            </button>
+          </CopyToClipboard>
           <div className="notes">Notes : {mess.notes}</div>
           <div className="hundred">Date of Call : {mess.date}</div>
           <div className="hundred">Created By : {mess.userid}</div>
+          {mess.email !== "" ? (
+            <div className="hundred">Customer Contacted by : {mess.email}</div>
+          ) : (
+            <div className="hundred">
+              <BiBlock /> Customer Not Contacted.
+            </div>
+          )}
           {mess.ntcflag == false ? (
             <div className="hundred">Ticket Status : Open </div>
           ) : (

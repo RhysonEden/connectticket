@@ -17,6 +17,12 @@ const Input = ({
   setGvrid,
   setNotes,
   setNtcflag,
+  gpid,
+  setGpid,
+  email,
+  setEmail,
+  gpcust,
+  setGpcust,
 }) => {
   const date = moment().format("MM/DD/YYYY");
   let user = sessionStorage.getItem("user");
@@ -38,7 +44,10 @@ const Input = ({
           finalnote,
           ntcflag,
           date,
-          user
+          user,
+          email,
+          gpid,
+          gpcust
         );
       } catch (err) {
         throw err;
@@ -69,6 +78,16 @@ const Input = ({
     setNotes(e.target.value);
   };
 
+  const changeGpid = (e) => {
+    setGpid(e.target.value);
+  };
+  const changeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const changeGpcust = (e) => {
+    setGpcust(e.target.value);
+  };
   const clearButton = (e) => {
     setCallName("");
     setCallNumber("");
@@ -85,14 +104,6 @@ const Input = ({
           value={callname}
           onChange={changeCallName}
         ></input>
-        {/* <PhoneInput
-          className="form-input"
-          country="US"
-          placeholder="Call Back Number"
-          value={callnumber}
-          onChange={setCallNumber}
-          withCountryCallingCode={false}
-        /> */}
         <input
           className="form-input"
           id="link"
@@ -109,6 +120,21 @@ const Input = ({
           value={gvrid}
           onChange={changeGvrId}
         ></input>
+        <input
+          className="form-input"
+          placeholder="GP Customer Number"
+          type="text"
+          value={gpcust}
+          onChange={changeGpcust}
+        ></input>
+        <input
+          className="form-input"
+          id="link"
+          placeholder="GP Ticket Number"
+          type="text"
+          value={gpid}
+          onChange={changeGpid}
+        ></input>
         <textarea
           className="form-notes"
           id="link"
@@ -124,6 +150,16 @@ const Input = ({
           type="text"
           value={date}
         ></input>
+        <div>
+          <input
+            className="form-input"
+            id="link"
+            placeholder="Customer Contact Method"
+            type="text"
+            value={email}
+            onChange={changeEmail}
+          ></input>
+        </div>
       </div>
       <div className="buttons">
         <button className="modal-button" onClick={clearButton}>

@@ -16,9 +16,13 @@ export async function createTicket(
   notes,
   ntcflag,
   date,
-  user
+  user,
+  email,
+  gpid,
+  gpcust
 ) {
   try {
+    console.log(gpcust, "Gpcust");
     await axios.post("api/tickets/create", {
       callname,
       callnumber,
@@ -27,6 +31,9 @@ export async function createTicket(
       ntcflag,
       date,
       user,
+      email,
+      gpid,
+      gpcust,
     });
   } catch (error) {
     throw error;
@@ -56,7 +63,11 @@ export async function updateTix(
   notes,
   ntcflag,
   date,
-  id
+  id,
+  user,
+  email,
+  gpid,
+  gpcust
 ) {
   try {
     await axios.post("api/tickets/update", {
@@ -67,6 +78,10 @@ export async function updateTix(
       ntcflag,
       date,
       id,
+      user,
+      email,
+      gpid,
+      gpcust,
     });
   } catch (error) {
     throw error;

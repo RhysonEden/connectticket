@@ -10,7 +10,9 @@ button {
   cursor: pointer;
   color: #ffffff;
 }
-
+.form-check {
+  margin-left: 20px;
+}
 .hide {
   display: none;
 }
@@ -91,7 +93,7 @@ button {
 }
 
 .searchingbuttons {
-  margin-left: -20%;
+  margin-left: -5%;
 }
 
 .modal {
@@ -188,10 +190,15 @@ button {
   border: 1px solid black;
 }
 
-.bigbutton {
+.bigbutton,
+.bigbuttonextra {
   border: 1px solid black;
   margin-left: 10px;
   margin-right: 5px;
+}
+
+.bigbuttonextra {
+  width: 90px;
 }
 
 @media only screen and (max-device-width: 480px) {

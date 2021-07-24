@@ -11,18 +11,18 @@ const DB_NAME = "tickets";
 // }
 // });
 
-// const client = new Client(
-//   process.env.DATABASE_URL ||
-//     `postgressql://postgres:james@localhost:5432/${DB_NAME}`
-// );
+const client = new Client(
+  process.env.DATABASE_URL ||
+    `postgressql://postgres:james@localhost:5432/${DB_NAME}`
+);
 
 //TESTING FETCH
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false,
+//   },
+// });
 
 async function createUser({ username, password, email }) {
   try {
@@ -127,17 +127,32 @@ async function createTicket(
   notes,
   ntcflag,
   date,
-  user
+  user,
+  email,
+  gpid,
+  gpcust
 ) {
+  console.log(email, gpid, gpcust, "new stuff");
   try {
     const result = await client.query(
       `
-      INSERT INTO ticket(callname, callnumber, gvrid, notes, ntcflag, date, userid)
-      VALUES ($1, $2, $3, $4, $5, $6, $7);
+      INSERT INTO ticket(callname, callnumber, gvrid, notes, ntcflag, date, userid, email, gpid, gpcust)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
     `,
-      [callname, callnumber, gvrid, notes, ntcflag, date, user]
+      [
+        callname,
+        callnumber,
+        gvrid,
+        notes,
+        ntcflag,
+        date,
+        user,
+        email,
+        gpid,
+        gpcust,
+      ]
     );
-    console.log("Result", result);
+    // console.log("Result", result);
     return result;
   } catch (error) {
     throw error;
@@ -182,10 +197,11 @@ async function openTicket(id) {
 
 async function updateTicket(id, fields = {}) {
   try {
+    console.log(fields, "fields");
     const setString = Object.keys(fields)
       .map((key, index) => `${key}=$${index + 1}`)
       .join(", ");
-
+    console.log(setString);
     try {
       const {
         rows: [result],
