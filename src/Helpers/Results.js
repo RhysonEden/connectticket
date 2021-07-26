@@ -50,14 +50,18 @@ const Existing = ({
         <div key={index} className="card" value={mess.id}>
           <div className="hundred">Caller's Name : {mess.callname}</div>
           <div className="hundred">Caller's Number : {mess.callnumber}</div>
-          <div className="hundred">GP Customer Number : {mess.gpcust}</div>
+          {mess.gpcust.length <= 3 ? (
+            <div className="notprovided">GP Customer Number Not Provided</div>
+          ) : (
+            <div className="hundred">GP Customer Number : {mess.gpcust}</div>
+          )}
           <CopyToClipboard text={mess.gvrid} onCopy={onCopyText}>
             <button className="hundredbutton">
               GVR ID : {mess.gvrid} (Click to Copy){" "}
             </button>
           </CopyToClipboard>
           <CopyToClipboard text={mess.gpid} onCopy={onCopyText}>
-            {mess.gpid.length !== 0 ? (
+            {mess.gpid.length >= 3 ? (
               <button className="hundredbutton">
                 GP Ticket Number : {mess.gpid} (Click to Copy){" "}
               </button>
@@ -68,7 +72,7 @@ const Existing = ({
           <div className="notes">Notes : {mess.notes}</div>
           <div className="hundred">Date of Call : {mess.date}</div>
           <div className="hundred">Created By : {mess.userid}</div>
-          {mess.email.length !== 0 ? (
+          {mess.email.length >= 3 ? (
             <div className="hundred">Customer Contacted by : {mess.email}</div>
           ) : (
             <div className="notprovided">

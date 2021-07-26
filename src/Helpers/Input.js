@@ -31,7 +31,15 @@ const Input = ({
     let id = gvrid.toString().length;
     let name = callname.length;
     let number = callnumber.length;
-
+    if (gpid.length == 0) {
+      setGpid("NA");
+    }
+    if (gpcust.length == 0) {
+      setGpcust("NA");
+    }
+    if (email.length == 0) {
+      setEmail("NA");
+    }
     if (id === 6 && name !== 0 && number === 10) {
       try {
         let finalnote = date + " " + notes;

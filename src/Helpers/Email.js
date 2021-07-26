@@ -50,7 +50,6 @@ const Email = ({
   };
 
   let post = message.sort(function compare(a, b) {
-    console.log(a.date, b.date);
     let dateA = new Date(a.date);
     let dateB = new Date(b.date);
     return dateA - dateB;
@@ -66,7 +65,6 @@ const Email = ({
             <div key={index} className="card" value={mess.id}>
               <div className="hundred">Caller's Name : {mess.callname}</div>
               <div className="hundred">Caller's Number : {mess.callnumber}</div>
-              {console.log(mess.gpcust)}
               {mess.gpcust.length >= 3 ? (
                 <div className="hundred">
                   GP Customer Number : {mess.gpcust}
