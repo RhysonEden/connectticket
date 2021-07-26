@@ -132,7 +132,19 @@ async function createTicket(
   gpid,
   gpcust
 ) {
-  console.log(email, gpid, gpcust, "new stuff");
+  console.log(
+    callname,
+    callnumber,
+    gvrid,
+    notes,
+    ntcflag,
+    date,
+    user,
+    email,
+    gpid,
+    gpcust,
+    "new stuff"
+  );
   try {
     const result = await client.query(
       `
@@ -152,9 +164,10 @@ async function createTicket(
         gpcust,
       ]
     );
-    // console.log("Result", result);
+    console.log("Result", result);
     return result;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 }

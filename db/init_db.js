@@ -31,34 +31,24 @@ async function createTables() {
           password varchar NOT NULL,
           email varchar NOT NULL
         );
-        CREATE TABLE ticket (
-          id SERIAL PRIMARY KEY,
-          callname varchar,
-          callnumber varchar,
-          gvrid varchar,
-          notes varchar,
-          ntcflag boolean,
-          date varchar,
-          userid varchar,
-          email varchar,
-          gpid varchar,
-          gpcust varchar
-);
       `);
   } catch (error) {
     throw error;
   }
 }
 
-// CREATE TABLE ticket (
-//   id SERIAL PRIMARY KEY,
-//   callname varchar,
-//   callnumber varchar,
-//   gvrid varchar,
-//   notes varchar,
-//   ntcflag boolean,
-//   date varchar,
-//   userid varchar
+//        CREATE TABLE ticket (
+//           id SERIAL PRIMARY KEY,
+//           callname varchar,
+//           callnumber varchar,
+//           gvrid varchar,
+//           notes varchar,
+//           ntcflag boolean,
+//           date varchar,
+//           userid varchar,
+//           email varchar,
+//           gpid varchar,
+//           gpcust varchar
 // );
 
 async function dropTables() {
@@ -66,7 +56,7 @@ async function dropTables() {
     await client.query(`
       DROP TABLE IF EXISTS users;
       DROP TABLE IF EXISTS ticket;
-      `);
+       `);
   } catch (error) {
     console.error("Error dropping tables!");
     throw error;
