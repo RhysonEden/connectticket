@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 import IdleTimer from "react-idle-timer";
-
+import { useHistory } from "react-router";
 const IdleTimerContainer = () => {
   const idleTimerRef = useRef(null);
-
+  const history = useHistory();
   const onIdle = () => {
-    window.location.reload();
+    history.push("/");
   };
 
   return (

@@ -99,7 +99,7 @@ const Input = ({
       <div className="form-main">
         <input
           className="form-input"
-          placeholder="Caller Name"
+          placeholder="Caller Name *"
           type="text"
           value={callname}
           onChange={changeCallName}
@@ -107,7 +107,7 @@ const Input = ({
         <input
           className="form-input"
           id="link"
-          placeholder="Call Back Number"
+          placeholder="Call Back Number *"
           type="text"
           value={callnumber}
           onChange={changeCallNumber}
@@ -115,7 +115,7 @@ const Input = ({
         <input
           className="form-input"
           id="link"
-          placeholder="GVR ID"
+          placeholder="GVR ID *"
           type="text"
           value={gvrid}
           onChange={changeGvrId}
@@ -138,7 +138,7 @@ const Input = ({
         <textarea
           className="form-notes"
           id="link"
-          placeholder="Notes"
+          placeholder="Notes *"
           type="text"
           value={notes}
           onChange={changeNotes}
@@ -161,6 +161,7 @@ const Input = ({
           ></input>
         </div>
       </div>
+      <div className="notprovided">All Field With * Are Required</div>
       <div className="buttons">
         <button className="modal-button" onClick={clearButton}>
           Clear

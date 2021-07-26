@@ -58,24 +58,28 @@ const Existing = ({
             </button>
           </CopyToClipboard>
           <CopyToClipboard text={mess.gpid} onCopy={onCopyText}>
-            <button className="hundredbutton">
-              GP Ticket Number : {mess.gpid} (Click to Copy){" "}
-            </button>
+            {mess.gpid.length !== 0 ? (
+              <button className="hundredbutton">
+                GP Ticket Number : {mess.gpid} (Click to Copy){" "}
+              </button>
+            ) : (
+              <div className="notprovided">No GP Ticket Number Provided</div>
+            )}
           </CopyToClipboard>
           <div className="notes">Notes : {mess.notes}</div>
           <div className="hundred">Date of Call : {mess.date}</div>
           <div className="hundred">Created By : {mess.userid}</div>
-          {mess.email !== "" ? (
+          {mess.email.length !== 0 ? (
             <div className="hundred">Customer Contacted by : {mess.email}</div>
           ) : (
-            <div className="hundred">
+            <div className="notprovided">
               <BiBlock /> Customer Not Contacted.
             </div>
           )}
           {mess.ntcflag == false ? (
             <div className="hundred">Ticket Status : Open </div>
           ) : (
-            <div className="hundred">Ticket Status : Archived</div>
+            <div className="notprovided">Ticket Status : Archived</div>
           )}
           <div className="buttonsother">
             <button

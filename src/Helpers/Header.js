@@ -27,6 +27,9 @@ const Header = ({
   };
   const capital = sessionStorage.getItem("user");
   const user = capital.charAt(0).toUpperCase() + capital.slice(1);
+  const handleTextChange = (e) => {
+    setSearchInput(e.target.value);
+  };
   return (
     <div className="header">
       <div className="searching">
@@ -34,6 +37,15 @@ const Header = ({
         <button className="newbutton" onClick={clearModal}>
           New
         </button>
+      </div>
+      <div className="searchingbuttons">
+        <input
+          className="search"
+          type="text"
+          placeholder="Search By GVR"
+          value={searchInput}
+          onChange={handleTextChange}
+        />
       </div>
       <Search
         searchInput={searchInput}

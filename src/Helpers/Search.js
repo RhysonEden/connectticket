@@ -2,6 +2,7 @@ import React from "react";
 import { getPart } from "../api";
 import { useAlert } from "react-alert";
 import { Link, useHistory } from "react-router-dom";
+import Navbar from "./Navbar";
 const Search = ({
   searchInput,
   setSearchInput,
@@ -40,15 +41,6 @@ const Search = ({
 
   return (
     <>
-      {/* <div className="searchbar"> */}
-      {/* <form > */}
-      <input
-        className="search"
-        type="text"
-        placeholder="Search By GVR"
-        value={searchInput}
-        onChange={handleTextChange}
-      />
       <div className="searchingbuttons">
         <button className="bigbutton" onClick={searchSubmit}>
           Search
@@ -64,27 +56,17 @@ const Search = ({
         </button>
       </div>
       <div className="mobilsearching">
-        <button className="newbutton" onClick={clearModal}>
-          New
-        </button>
-        <button className="newbutton" onClick={pushButton}>
-          Show All
-        </button>
-        <Link to="/results">
-          <button className="newbutton" onClick={searchSubmit}>
-            Search
-          </button>
-        </Link>
-        <Link to="/">
-          <button
-            className="newbutton"
-            onClick={() => window.location.reload()}
-          >
-            Clear
-          </button>
-        </Link>
+        <Navbar
+          searchSubmit={searchSubmit}
+          pushButton={pushButton}
+          clearButton={clearButton}
+          contactButton={contactButton}
+          clearModal={clearModal}
+          searchInput={searchInput}
+          handleTextChange={handleTextChange}
+          searchSubmit={searchSubmit}
+        />
       </div>
-      {/* </form> */}
     </>
   );
 };

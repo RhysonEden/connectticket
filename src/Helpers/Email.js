@@ -19,6 +19,9 @@ const Email = ({
   setNotes,
   setNtcflag,
   setId,
+  setGpid,
+  setEmail,
+  setGpcust,
 }) => {
   const alert = useAlert();
 
@@ -27,6 +30,16 @@ const Email = ({
     try {
       window.location.reload();
       await openTix(id);
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  const removeTix = async (e) => {
+    let id = parseInt(e.target.value);
+    try {
+      window.location.reload();
+      await deleteTix(id);
     } catch (err) {
       throw err;
     }
@@ -49,41 +62,69 @@ const Email = ({
     <div className="existing">
       {main.map((mess, index) => (
         <>
-          {mess.email !== "" ? (
+          {mess.email.length !== 0 ? (
             <div key={index} className="card" value={mess.id}>
               <div className="hundred">Caller's Name : {mess.callname}</div>
               <div className="hundred">Caller's Number : {mess.callnumber}</div>
-              <div className="hundred">GP Customer Number : {mess.gpcust}</div>
+              {console.log(mess.gpcust)}
+              {mess.gpcust.length !== 0 ? (
+                <div className="hundred">
+                  GP Customer Number : {mess.gpcust}
+                </div>
+              ) : (
+                <div className="notprovided">
+                  GP Customer Number Not Provided
+                </div>
+              )}
               <CopyToClipboard text={mess.gvrid} onCopy={onCopyText}>
                 <button className="hundredbutton">
                   GVR ID : {mess.gvrid} (Click to Copy){" "}
                 </button>
               </CopyToClipboard>
               <CopyToClipboard text={mess.gpid} onCopy={onCopyText}>
-                <button className="hundredbutton">
-                  GP Ticket Number : {mess.gpid} (Click to Copy){" "}
-                </button>
+                {mess.gpid.length !== 0 ? (
+                  <button className="hundredbutton">
+                    GP Ticket Number : {mess.gpid} (Click to Copy){" "}
+                  </button>
+                ) : (
+                  <div className="notprovided">
+                    No GP Ticket Number Provided
+                  </div>
+                )}
               </CopyToClipboard>
               <div className="notes">Notes : {mess.notes}</div>
               <div className="hundred">Date of Call : {mess.date}</div>
               <div className="hundred">Created By : {mess.userid}</div>
-              {mess.email !== "" ? (
+              {mess.email.length !== 0 ? (
                 <div className="hundred">
                   Customer Contacted by : {mess.email}
                 </div>
               ) : (
-                <div className="hundred">
+                <div className="notprovided">
                   <BiBlock /> Customer Not Contacted.
                 </div>
               )}
               {mess.ntcflag == false ? (
                 <div className="hundred">Ticket Status : Open </div>
               ) : (
-                <div className="hundred">Ticket Status : Archived</div>
+                <div className="notprovided">Ticket Status : Archived</div>
               )}
               <div className="buttonsother">
+                {mess.ntcflag == true ? (
+                  <button className="wide" value={mess.id} onClick={readdTix}>
+                    Re-Open
+                  </button>
+                ) : (
+                  <div></div>
+                )}
+                {mess.ntcflag == false ? (
+                  <button value={mess.id} onClick={removeTix}>
+                    Archive
+                  </button>
+                ) : (
+                  <div></div>
+                )}
                 <button
-                  className="wide"
                   value={mess.id}
                   onClick={() => {
                     setCallName(mess.callname);
@@ -92,27 +133,19 @@ const Email = ({
                     setNotes(mess.notes);
                     setShow(true);
                     setId(mess.id);
+                    setGpid(mess.gpid);
+                    setEmail(mess.email);
+                    setGpcust(mess.gpcust);
                   }}
                 >
                   Update
                 </button>
-                {mess.ntcflag == true ? (
-                  <button className="wide" value={mess.id} onClick={readdTix}>
-                    Re-Open
-                  </button>
-                ) : (
-                  <div></div>
-                )}
               </div>
             </div>
-          ) : (
-            <div></div>
-          )}
+          ) : null}
         </>
-        // }
       ))}
     </div>
-    // </div>
   );
 };
 

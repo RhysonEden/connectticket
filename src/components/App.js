@@ -154,6 +154,10 @@ const App = () => {
               setId={setId}
               gpid={gpid}
               setGpid={setGpid}
+              email={email}
+              setEmail={setEmail}
+              gpcust={gpcust}
+              setGpcust={setGpcust}
             />
           </Switch>
           <IdleTimerContainer />
