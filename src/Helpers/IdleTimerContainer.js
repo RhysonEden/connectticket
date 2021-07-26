@@ -6,6 +6,7 @@ const IdleTimerContainer = () => {
   const history = useHistory();
   const onIdle = () => {
     history.push("/");
+    window.location.reload();
   };
 
   return (

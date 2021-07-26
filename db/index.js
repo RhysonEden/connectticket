@@ -16,7 +16,6 @@ const DB_NAME = "tickets";
 //     `postgressql://postgres:james@localhost:5432/${DB_NAME}`
 // );
 
-//TESTING FETCH
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {
