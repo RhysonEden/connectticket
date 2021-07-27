@@ -22,6 +22,8 @@ const Email = ({
   setGpid,
   setEmail,
   setGpcust,
+  submit,
+  setSubmit,
 }) => {
   const alert = useAlert();
 
@@ -134,6 +136,7 @@ const Email = ({
                     setGpid(mess.gpid);
                     setEmail(mess.email);
                     setGpcust(mess.gpcust);
+                    setSubmit(false);
                   }}
                 >
                   Update

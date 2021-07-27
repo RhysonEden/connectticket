@@ -26,6 +26,8 @@ const Existing = ({
   gpcust,
   checker,
   setChecker,
+  submit,
+  setSubmit,
 }) => {
   const alert = useAlert();
   const removeTix = async (e) => {
@@ -107,6 +109,7 @@ const Existing = ({
                 <button
                   value={mess.id}
                   onClick={() => {
+                    setSubmit(false);
                     setCallName(mess.callname);
                     setCallNumber(mess.callnumber);
                     setGvrid(mess.gvrid);
@@ -116,6 +119,7 @@ const Existing = ({
                     setGpid(mess.gpid);
                     setEmail(mess.email);
                     setGpcust(mess.gpcust);
+                    setSubmit(false);
                   }}
                 >
                   Update

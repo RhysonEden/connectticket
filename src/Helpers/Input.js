@@ -177,9 +177,13 @@ const Input = ({
         <button className="modal-button" onClick={clearButton}>
           Clear
         </button>
-        <button className="modal-button" onClick={createTix}>
-          Submit
-        </button>
+        {submit == true ? (
+          <button className="modal-button" onClick={createTix}>
+            Submit
+          </button>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

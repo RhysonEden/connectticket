@@ -9,6 +9,8 @@ const Search = ({
   message,
   setMessage,
   clearModal,
+  submit,
+  setSubmit,
 }) => {
   const alert = useAlert();
   const history = useHistory();
@@ -57,6 +59,8 @@ const Search = ({
       </div>
       <div className="mobilsearching">
         <Navbar
+          submit={submit}
+          setSubmit={setSubmit}
           searchSubmit={searchSubmit}
           pushButton={pushButton}
           clearButton={clearButton}

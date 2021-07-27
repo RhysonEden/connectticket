@@ -17,6 +17,8 @@ const Header = ({
   setGvrid,
   setNotes,
   setNtcflag,
+  submit,
+  setSubmit,
 }) => {
   const clearModal = () => {
     setCallName("");
@@ -24,6 +26,7 @@ const Header = ({
     setGvrid("");
     setNotes("");
     setShow(true);
+    setSubmit(true);
   };
   const capital = sessionStorage.getItem("user");
   const user = capital.charAt(0).toUpperCase() + capital.slice(1);
@@ -48,6 +51,8 @@ const Header = ({
         />
       </div>
       <Search
+        submit={submit}
+        setSubmit={setSubmit}
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         message={message}

@@ -21,6 +21,7 @@ const App = () => {
   const [gpid, setGpid] = useState("");
   const [email, setEmail] = useState("");
   const [gpcust, setGpcust] = useState("");
+  const [submit, setSubmit] = useState(true);
   let user = sessionStorage.getItem("user");
   useEffect(() => {
     getSomething()
@@ -47,6 +48,8 @@ const App = () => {
       <Brouter>
         <div className="app">
           <Header
+            submit={sumbit}
+            setSubmit={setSumbit}
             message={message}
             setMessage={setMessage}
             show={show}
@@ -65,6 +68,8 @@ const App = () => {
             setSearchInput={setSearchInput}
           />
           <Modal
+            submit={sumbit}
+            setSubmit={setSumbit}
             show={show}
             setShow={setShow}
             callname={callname}
@@ -89,6 +94,8 @@ const App = () => {
             <Existing
               path="/"
               exact
+              submit={sumbit}
+              setSubmit={setSumbit}
               component={Existing}
               message={message}
               setMessage={setMessage}
@@ -114,6 +121,8 @@ const App = () => {
             />
             <Results
               path="/results"
+              submit={sumbit}
+              setSubmit={setSumbit}
               component={Results}
               message={message}
               setMessage={setMessage}
@@ -134,6 +143,8 @@ const App = () => {
               setGpid={setGpid}
             />
             <Email
+              submit={sumbit}
+              setSubmit={setSumbit}
               path="/email"
               component={Results}
               message={message}
