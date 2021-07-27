@@ -31,14 +31,17 @@ const Input = ({
     let id = gvrid.toString().length;
     let name = callname.length;
     let number = callnumber.length;
+    let mail = email;
+    let globalid = gpid;
+    let globalcust = gpcust;
     if (gpid.length == 0) {
-      setGpid("NA");
+      globalid = "NA";
     }
     if (gpcust.length == 0) {
-      setGpcust("NA");
+      globalcust = "NA";
     }
     if (email.length == 0) {
-      setEmail("NA");
+      mail = "NA";
     }
     if (id === 6 && name !== 0 && number === 10) {
       try {
@@ -53,9 +56,9 @@ const Input = ({
           ntcflag,
           date,
           user,
-          email,
-          gpid,
-          gpcust
+          mail,
+          globalid,
+          globalcust
         );
       } catch (err) {
         throw err;

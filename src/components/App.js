@@ -25,7 +25,6 @@ const App = () => {
   useEffect(() => {
     getSomething()
       .then((response) => {
-        // console.log(response.tickets.date);
         let tickets = response.tickets;
         setMessage(tickets);
       })

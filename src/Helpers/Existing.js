@@ -86,9 +86,6 @@ const Existing = ({
               <div className="notes">Notes : {mess.notes}</div>
               <div className="hundred">Date of Call : {mess.date}</div>
               <div className="hundred">Created By : {mess.userid}</div>
-              {mess.email.length >= 3
-                ? console.log(mess.email.length)
-                : console.log("test")}
               {mess.email.length >= 3 ? (
                 <div className="hundred">
                   Customer Contacted by : {mess.email}

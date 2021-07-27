@@ -36,30 +36,16 @@ const Modal = ({
     let gid = gvrid.toString().length;
     let name = callname.length;
     let number = callnumber.length;
-    console.log("email", email);
+    let finalnote = date + " " + notes;
     if (gid === 6 && name !== 0 && number === 10) {
       setShow(false);
-      console.log(
-        callname,
-        callnumber,
-        gvrid,
-        notes,
-        ntcflag,
-        date,
-        id,
-        user,
-        email,
-        gpid,
-        gpcust,
-        "updates"
-      );
       updateTix(
         callname,
         callnumber,
         gvrid,
-        notes,
+        finalnote,
         ntcflag,
-        date,
+        // date,
         id,
         user,
         email,

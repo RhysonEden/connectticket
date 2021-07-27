@@ -22,7 +22,6 @@ export async function createTicket(
   gpcust
 ) {
   try {
-    console.log(gpcust, "Gpcust");
     await axios.post("api/tickets/create", {
       callname,
       callnumber,
@@ -62,7 +61,7 @@ export async function updateTix(
   gvrid,
   notes,
   ntcflag,
-  date,
+  // date,
   id,
   user,
   email,
@@ -76,7 +75,7 @@ export async function updateTix(
       gvrid,
       notes,
       ntcflag,
-      date,
+      // date,
       id,
       user,
       email,

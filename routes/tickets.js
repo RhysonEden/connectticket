@@ -33,7 +33,6 @@ ticketRouter.post("/create", async (req, res, next) => {
       gpid,
       gpcust,
     } = req.body;
-    console.log("cust", gpcust);
     const tickets = await createTicket(
       callname,
       callnumber,
@@ -86,7 +85,7 @@ ticketRouter.post("/update", async (req, res, next) => {
     gvrid,
     notes,
     ntcflag,
-    date,
+    // date,
     id,
     user,
     email,
@@ -116,9 +115,9 @@ ticketRouter.post("/update", async (req, res, next) => {
     updateFields.ntcflag = ntcflag;
   }
 
-  if (date) {
-    updateFields.date = date;
-  }
+  // if (date) {
+  //   updateFields.date = date;
+  // }
 
   // if (user) {
   //   updateFields.userid = userid;
@@ -135,7 +134,6 @@ ticketRouter.post("/update", async (req, res, next) => {
     updateFields.gpcust = gpcust;
   }
   try {
-    console.log(updateFields, "UDF");
     const updatedTicket = await updateTicket(id, updateFields);
   } catch ({ name, message }) {
     next({ name, message });
