@@ -72,6 +72,8 @@ const App = () => {
             gpcust={gpcust}
             setEmail={setEmail}
             email={email}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
           />
           <Modal
             sol={sol}

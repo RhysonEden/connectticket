@@ -17,6 +17,7 @@ const Search = ({
   const searchSubmit = (e) => {
     getPart(searchInput).then((resp) => {
       let results = resp.data.part.rows;
+      console.log(results);
       if (results.length === 0) {
         alert.show("Nothing Found, Please Try Again");
       } else {
