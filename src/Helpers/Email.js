@@ -22,8 +22,8 @@ const Email = ({
   setGpid,
   setEmail,
   setGpcust,
-  submit,
-  setSubmit,
+  sol,
+  setSol,
 }) => {
   const alert = useAlert();
 
@@ -133,10 +133,28 @@ const Email = ({
                     setNotes(mess.notes);
                     setShow(true);
                     setId(mess.id);
-                    setGpid(mess.gpid);
-                    setEmail(mess.email);
-                    setGpcust(mess.gpcust);
-                    setSubmit(false);
+                    if (mess.gpid == "NA") {
+                      setGpid("");
+                      console.log("GPID", mess.gpid.length);
+                    } else {
+                      setGpid(mess.gpid);
+                      console.log("SET GPID", mess.gpid);
+                    }
+                    if (mess.email == "NA") {
+                      setEmail("");
+                      console.log("EMAIL", mess.gpid.length);
+                    } else {
+                      setEmail(mess.email);
+                      console.log("SET EMAIL", mess.email);
+                    }
+                    if (mess.gpcust == "NA") {
+                      setGpcust("");
+                      console.log("GPCUST", mess.gpcust.length);
+                    } else {
+                      setGpcust(mess.gpcust);
+                      console.log("SET GPCUST", mess.gpcust);
+                    }
+                    setSol("clos");
                   }}
                 >
                   Update

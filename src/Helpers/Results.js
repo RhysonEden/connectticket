@@ -4,7 +4,7 @@ import { openTix } from "../api";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useAlert } from "react-alert";
 import { BiEnvelopeOpen, BiBlock } from "react-icons/bi";
-const Existing = ({
+const Results = ({
   message,
   show,
   setShow,
@@ -19,6 +19,16 @@ const Existing = ({
   setNotes,
   setNtcflag,
   setId,
+  gpid,
+  setGpid,
+  email,
+  setEmail,
+  setGpcust,
+  gpcust,
+  checker,
+  setChecker,
+  sol,
+  setSol,
 }) => {
   const alert = useAlert();
 
@@ -95,6 +105,28 @@ const Existing = ({
                 setNotes(mess.notes);
                 setShow(true);
                 setId(mess.id);
+                if (mess.gpid == "NA") {
+                  setGpid("");
+                  console.log("GPID", mess.gpid.length);
+                } else {
+                  setGpid(mess.gpid);
+                  console.log("SET GPID", mess.gpid);
+                }
+                if (mess.email == "NA") {
+                  setEmail("");
+                  console.log("EMAIL", mess.gpid.length);
+                } else {
+                  setEmail(mess.email);
+                  console.log("SET EMAIL", mess.email);
+                }
+                if (mess.gpcust == "NA") {
+                  setGpcust("");
+                  console.log("GPCUST", mess.gpcust.length);
+                } else {
+                  setGpcust(mess.gpcust);
+                  console.log("SET GPCUST", mess.gpcust);
+                }
+                setSol("clos");
               }}
             >
               Update
@@ -116,4 +148,4 @@ const Existing = ({
   );
 };
 
-export default Existing;
+export default Results;

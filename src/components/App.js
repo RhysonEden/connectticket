@@ -21,7 +21,7 @@ const App = () => {
   const [gpid, setGpid] = useState("");
   const [email, setEmail] = useState("");
   const [gpcust, setGpcust] = useState("");
-  const [submit, setSubmit] = useState(true);
+  const [sol, setSol] = useState("op");
   let user = sessionStorage.getItem("user");
   useEffect(() => {
     getSomething()
@@ -48,8 +48,9 @@ const App = () => {
       <Brouter>
         <div className="app">
           <Header
-            submit={sumbit}
-            setSubmit={setSumbit}
+            sol={sol}
+            setSol={setSol}
+            component={Existing}
             message={message}
             setMessage={setMessage}
             show={show}
@@ -64,12 +65,17 @@ const App = () => {
             setGvrid={setGvrid}
             setNotes={setNotes}
             setNtcflag={setNtcflag}
-            searchInput={searchInput}
-            setSearchInput={setSearchInput}
+            setId={setId}
+            gpid={gpid}
+            setGpid={setGpid}
+            setGpcust={setGpcust}
+            gpcust={gpcust}
+            setEmail={setEmail}
+            email={email}
           />
           <Modal
-            submit={sumbit}
-            setSubmit={setSumbit}
+            sol={sol}
+            setSol={setSol}
             show={show}
             setShow={setShow}
             callname={callname}
@@ -94,8 +100,8 @@ const App = () => {
             <Existing
               path="/"
               exact
-              submit={sumbit}
-              setSubmit={setSumbit}
+              sol={sol}
+              setSol={setSol}
               component={Existing}
               message={message}
               setMessage={setMessage}
@@ -121,9 +127,9 @@ const App = () => {
             />
             <Results
               path="/results"
-              submit={sumbit}
-              setSubmit={setSumbit}
-              component={Results}
+              sol={sol}
+              setSol={setSol}
+              component={Existing}
               message={message}
               setMessage={setMessage}
               show={show}
@@ -141,12 +147,16 @@ const App = () => {
               setId={setId}
               gpid={gpid}
               setGpid={setGpid}
+              setGpcust={setGpcust}
+              gpcust={gpcust}
+              setEmail={setEmail}
+              email={email}
             />
             <Email
-              submit={sumbit}
-              setSubmit={setSumbit}
               path="/email"
-              component={Results}
+              sol={sol}
+              setSol={setSol}
+              component={Existing}
               message={message}
               setMessage={setMessage}
               show={show}
@@ -164,10 +174,10 @@ const App = () => {
               setId={setId}
               gpid={gpid}
               setGpid={setGpid}
-              email={email}
-              setEmail={setEmail}
-              gpcust={gpcust}
               setGpcust={setGpcust}
+              gpcust={gpcust}
+              setEmail={setEmail}
+              email={email}
             />
           </Switch>
           <IdleTimerContainer />

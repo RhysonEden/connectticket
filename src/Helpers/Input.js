@@ -3,7 +3,6 @@ import "./input.css";
 import { createTicket } from "../api";
 import moment from "moment";
 import { useAlert } from "react-alert";
-import PhoneInput from "react-phone-number-input/input";
 const Input = ({
   show,
   setShow,
@@ -23,6 +22,9 @@ const Input = ({
   setEmail,
   gpcust,
   setGpcust,
+  sol,
+  setSol,
+  update,
 }) => {
   const date = moment().format("MM/DD/YYYY");
   let user = sessionStorage.getItem("user");
@@ -177,12 +179,14 @@ const Input = ({
         <button className="modal-button" onClick={clearButton}>
           Clear
         </button>
-        {submit == true ? (
+        {sol.length == 2 ? (
           <button className="modal-button" onClick={createTix}>
             Submit
           </button>
         ) : (
-          <div></div>
+          <button className="modal-button" onClick={update}>
+            Update
+          </button>
         )}
       </div>
     </div>

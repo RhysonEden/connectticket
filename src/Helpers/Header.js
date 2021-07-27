@@ -1,10 +1,6 @@
 import React from "react";
 import Search from "./Search";
 const Header = ({
-  searchInput,
-  setMessage,
-  setSearchInput,
-  message,
   show,
   setShow,
   callname,
@@ -17,8 +13,20 @@ const Header = ({
   setGvrid,
   setNotes,
   setNtcflag,
-  submit,
-  setSubmit,
+  gpid,
+  setGpid,
+  email,
+  setEmail,
+  gpcust,
+  setGpcust,
+  sol,
+  setSol,
+  update,
+  setId,
+  setSearchInput,
+  searchInput,
+  message,
+  setMessage,
 }) => {
   const clearModal = () => {
     setCallName("");
@@ -26,8 +34,13 @@ const Header = ({
     setGvrid("");
     setNotes("");
     setShow(true);
-    setSubmit(true);
+    setId("");
+    setGpid("");
+    setEmail("");
+    setGpcust("");
+    setSol("op");
   };
+
   const capital = sessionStorage.getItem("user");
   const user = capital.charAt(0).toUpperCase() + capital.slice(1);
   const handleTextChange = (e) => {
@@ -51,8 +64,8 @@ const Header = ({
         />
       </div>
       <Search
-        submit={submit}
-        setSubmit={setSubmit}
+        sol={sol}
+        setSol={setSol}
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         message={message}

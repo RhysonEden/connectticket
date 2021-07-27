@@ -23,6 +23,8 @@ const Modal = ({
   setEmail,
   gpcust,
   setGpcust,
+  sol,
+  setSol,
 }) => {
   const alert = useAlert();
   if (!show) {
@@ -67,6 +69,9 @@ const Modal = ({
       <div className="modal-content">
         <div className="modal-body">
           <Input
+            update={update}
+            sol={sol}
+            setSol={setSol}
             callname={callname}
             callnumber={callnumber}
             gvrid={gvrid}
@@ -91,9 +96,13 @@ const Modal = ({
           <button className="modal-button" onClick={() => setShow(false)}>
             Close
           </button>
-          <button className="modal-button" onClick={update}>
-            Update
-          </button>
+          {/* {sol.length != 2 ? (
+            <button className="modal-button" onClick={update}>
+              Update
+            </button>
+          ) : (
+            <div></div>
+          )} */}
         </div>
       </div>
     </div>
