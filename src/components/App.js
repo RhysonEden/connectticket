@@ -39,7 +39,7 @@ const App = () => {
       <Brouter>
         <Switch>
           <Login />
-          <IdleTimerContainer />
+          <IdleTimerContainer setMessage={setMessage} />
         </Switch>
       </Brouter>
     );
@@ -182,7 +182,7 @@ const App = () => {
               email={email}
             />
           </Switch>
-          <IdleTimerContainer />
+          <IdleTimerContainer setMessage={setMessage} />
         </div>
       </Brouter>
     );
