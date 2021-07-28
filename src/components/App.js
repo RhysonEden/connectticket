@@ -185,7 +185,7 @@ const App = () => {
               email={email}
             />
           </Switch>
-          {/* <Opening getSomething={getSomething} setMessage={setMessage} /> */}
+          <Opening getSomething={getSomething} setMessage={setMessage} />
           <IdleTimerContainer setMessage={setMessage} />
         </div>
       </Brouter>
