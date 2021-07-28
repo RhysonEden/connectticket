@@ -8,6 +8,7 @@ import Login from "./Login";
 import Email from "../Helpers/Email";
 import IdleTimerContainer from "../Helpers/IdleTimerContainer";
 import { BrowserRouter as Brouter, Switch } from "react-router-dom";
+import Opening from "../Helpers/Opening";
 const App = () => {
   const [message, setMessage] = useState([]);
   const [show, setShow] = useState(false);
@@ -23,6 +24,9 @@ const App = () => {
   const [gpcust, setGpcust] = useState("");
   const [sol, setSol] = useState("op");
   let user = sessionStorage.getItem("user");
+  // if (!user) {
+  //   console.log("no");
+  // } else {
   useEffect(() => {
     getSomething()
       .then((response) => {
@@ -33,13 +37,12 @@ const App = () => {
         setMessage(error.message);
       });
   }, []);
-
+  // }
   if (!user) {
     return (
       <Brouter>
         <Switch>
           <Login />
-          <IdleTimerContainer setMessage={setMessage} />
         </Switch>
       </Brouter>
     );
@@ -182,6 +185,7 @@ const App = () => {
               email={email}
             />
           </Switch>
+          {/* <Opening getSomething={getSomething} setMessage={setMessage} /> */}
           <IdleTimerContainer setMessage={setMessage} />
         </div>
       </Brouter>

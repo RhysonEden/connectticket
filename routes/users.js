@@ -8,6 +8,7 @@ const {
   getUserByUsername,
   getUser,
   getAllUsers,
+  getAllTickets,
   updateUser,
   adminUpdate,
 } = require("../db");

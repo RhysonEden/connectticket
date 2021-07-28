@@ -1,10 +1,11 @@
+import { JsonWebTokenError } from "jsonwebtoken";
 import React, { useRef, useEffect } from "react";
 import IdleTimer from "react-idle-timer";
 import { useHistory } from "react-router";
 import { updateRefresh } from "../api/index";
-let info = JSON.parse(sessionStorage.getItem("data"));
-let endinfo = info.tickets;
 const IdleTimerContainer = ({ setMessage }) => {
+  let info = JSON.parse(sessionStorage.getItem("data"));
+  let endinfo = info.tickets;
   const idleTimerRef = useRef(null);
   const history = useHistory();
   const onIdle = () => {

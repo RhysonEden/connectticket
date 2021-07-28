@@ -4,7 +4,6 @@ export default async function getSomething() {
   try {
     const { data } = await axios.get("/api/tickets");
     sessionStorage.setItem("data", JSON.stringify(data));
-    let endinfo = JSON.parse(sessionStorage.getItem("data"));
     return data;
   } catch (error) {
     throw error;
