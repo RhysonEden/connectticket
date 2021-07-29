@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { deleteTix } from "../api";
-import { openTix } from "../api";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useAlert } from "react-alert";
 import { BiEnvelopeOpen, BiBlock } from "react-icons/bi";
-const Email = ({
+const Card = ({
   message,
   show,
   setShow,
@@ -19,25 +18,19 @@ const Email = ({
   setNotes,
   setNtcflag,
   setId,
+  gpid,
   setGpid,
+  email,
   setEmail,
   setGpcust,
+  gpcust,
+  checker,
+  setChecker,
   sol,
   setSol,
   searchInput,
 }) => {
   const alert = useAlert();
-
-  const readdTix = async (e) => {
-    let id = parseInt(e.target.value);
-    try {
-      window.location.reload();
-      await openTix(id);
-    } catch (err) {
-      throw err;
-    }
-  };
-
   const removeTix = async (e) => {
     let id = parseInt(e.target.value);
     try {
@@ -77,7 +70,7 @@ const Email = ({
         })
         .map((mess, index) => (
           <>
-            {mess.email.length >= 3 ? (
+            {mess.ntcflag == false ? (
               <div key={index} className="card" value={mess.id}>
                 <div className="hundred">Caller's Name : {mess.callname}</div>
                 <div className="hundred">
@@ -126,20 +119,9 @@ const Email = ({
                   <div className="notprovided">Ticket Status : Archived</div>
                 )}
                 <div className="buttonsother">
-                  {mess.ntcflag == true ? (
-                    <button className="wide" value={mess.id} onClick={readdTix}>
-                      Re-Open
-                    </button>
-                  ) : (
-                    <div></div>
-                  )}
-                  {mess.ntcflag == false ? (
-                    <button value={mess.id} onClick={removeTix}>
-                      Archive
-                    </button>
-                  ) : (
-                    <div></div>
-                  )}
+                  <button value={mess.id} onClick={removeTix}>
+                    Archive
+                  </button>
                   <button
                     value={mess.id}
                     onClick={() => {
@@ -179,9 +161,11 @@ const Email = ({
               </div>
             ) : null}
           </>
+          // }
         ))}
     </div>
+    // </div>
   );
 };
 
-export default Email;
+export default Card;

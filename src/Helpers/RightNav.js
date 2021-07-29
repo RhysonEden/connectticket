@@ -69,15 +69,15 @@ const RightNav = ({
             <input
               className="searchmobil"
               type="text"
-              placeholder="Search By GVR"
+              placeholder="Search By GVR ID or GP Customer"
               value={searchInput}
               onChange={handleTextChange}
             />
           </li>
           <li>
-            <button className="burgerbutton" onClick={searchSubmit}>
+            {/* <button className="burgerbutton" onClick={searchSubmit}>
               Search
-            </button>
+            </button> */}
           </li>
         </div>
       </Ul>

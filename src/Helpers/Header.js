@@ -58,7 +58,7 @@ const Header = ({
         <input
           className="search"
           type="text"
-          placeholder="Search By GVR"
+          placeholder="Search By GVR ID or GP Customer"
           value={searchInput}
           onChange={handleTextChange}
         />

@@ -9,6 +9,7 @@ import Email from "../Helpers/Email";
 import IdleTimerContainer from "../Helpers/IdleTimerContainer";
 import { BrowserRouter as Brouter, Switch } from "react-router-dom";
 import Opening from "../Helpers/Opening";
+import Card from "../Helpers/Card";
 const App = () => {
   const [message, setMessage] = useState([]);
   const [show, setShow] = useState(false);
@@ -102,9 +103,10 @@ const App = () => {
             setGpcust={setGpcust}
           />
           <Switch>
-            <Existing
+            <Card
               path="/"
               exact
+              searchInput={searchInput}
               sol={sol}
               setSol={setSol}
               component={Existing}
@@ -156,6 +158,7 @@ const App = () => {
               gpcust={gpcust}
               setEmail={setEmail}
               email={email}
+              searchInput={searchInput}
             />
             <Email
               path="/email"
@@ -183,6 +186,7 @@ const App = () => {
               gpcust={gpcust}
               setEmail={setEmail}
               email={email}
+              searchInput={searchInput}
             />
           </Switch>
           <Opening getSomething={getSomething} setMessage={setMessage} />

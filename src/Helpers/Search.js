@@ -44,9 +44,9 @@ const Search = ({
   return (
     <>
       <div className="searchingbuttons">
-        <button className="bigbutton" onClick={searchSubmit}>
+        {/* <button className="bigbutton" onClick={searchSubmit}>
           Search
-        </button>
+        </button> */}
         <button className="bigbutton" onClick={pushButton}>
           Show All
         </button>

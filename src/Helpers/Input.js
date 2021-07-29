@@ -35,7 +35,7 @@ const Input = ({
     let number = callnumber.length;
     let mail = email;
     let globalid = gpid;
-    let globalcust = gpcust;
+    let globalcust = gpcust.toUpperCase();
     if (gpid.length == 0) {
       globalid = "NA";
     }
