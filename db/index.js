@@ -74,13 +74,17 @@ async function getUser({ username, password }) {
 }
 
 async function getAllUsers() {
-  const { rows } = await client.query(
-    `SELECT username, email
+  try {
+    const { rows } = await client.query(
+      `SELECT username, email
     FROM users;
   `
-  );
+    );
 
-  return rows;
+    return rows;
+  } catch (error) {
+    throw error;
+  }
 }
 
 async function getUsersByID(id) {
@@ -173,38 +177,50 @@ async function createTicket(
 
 async function getAllTickets() {
   console.log("Hi Nels!!");
-  const { rows } = await client.query(
-    `SELECT *
+  try {
+    const { rows } = await client.query(
+      `SELECT *
     FROM ticket;
   `
-  );
+    );
 
-  return rows;
+    return rows;
+  } catch (error) {
+    throw error;
+  }
 }
 
 async function deleteTicket(id) {
-  const { rows } = await client.query(
-    `UPDATE ticket
+  try {
+    const { rows } = await client.query(
+      `UPDATE ticket
     SET ntcflag=true
     WHERE id=$1;
   `,
-    [id]
-  );
+      [id]
+    );
 
-  return rows;
+    return rows;
+  } catch (error) {
+    throw error;
+  }
 }
 
 async function openTicket(id) {
   console.log("opening", id);
-  const { rows } = await client.query(
-    `UPDATE ticket
+  try {
+    const { rows } = await client.query(
+      `UPDATE ticket
     SET ntcflag=false
     WHERE id=$1;
   `,
-    [id]
-  );
+      [id]
+    );
 
-  return rows;
+    return rows;
+  } catch (error) {
+    throw error;
+  }
 }
 
 async function updateTicket(id, fields = {}) {

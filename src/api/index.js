@@ -123,7 +123,7 @@ export async function loginUser(username, password) {
     );
     return data;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 
