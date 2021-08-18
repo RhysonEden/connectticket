@@ -57,6 +57,7 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 
   try {
+    console.log(username, password);
     const user = await getUser({ username, password });
     process.env.JWT_SECRET;
     if (!user) {

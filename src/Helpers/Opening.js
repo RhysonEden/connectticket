@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { updateRefresh } from "../api/index";
 const Opening = ({ getSomething, setMessage }) => {
-  let info = JSON.parse(sessionStorage.getItem("data"));
-  let endinfo = info.tickets;
+  // let info = JSON.parse(sessionStorage.getItem("data"));
+  // let endinfo = info.tickets;
 
   useEffect(() => {
     getSomething()
@@ -16,18 +16,9 @@ const Opening = ({ getSomething, setMessage }) => {
   }, []);
 
   useEffect(() => {
-    updateRefresh()
-      .then((response) => {
-        let tickets = response.tickets;
-        if (tickets.length == endinfo.length) {
-          return;
-        } else {
-          window.location.reload();
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+    updateRefresh().catch((error) => {
+      console.log(error.message);
+    });
   }, []);
   return null;
 };

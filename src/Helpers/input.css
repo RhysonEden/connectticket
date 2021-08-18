@@ -20,6 +20,13 @@ button {
   display: none;
 }
 
+.newbutton {
+  margin-left: 1rem;
+}
+
+.user {
+  margin-left: 3rem;
+}
 .existing {
   display: flex;
   flex-wrap: wrap;

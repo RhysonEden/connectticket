@@ -1,9 +1,13 @@
 import axios from "axios";
+let token = sessionStorage.getItem("token");
+const config = {
+  headers: { Authorization: `Bearer ${token}` },
+};
 
 export default async function getSomething() {
   try {
     const { data } = await axios.get("/api/tickets");
-    sessionStorage.setItem("data", JSON.stringify(data));
+    // sessionStorage.setItem("data", JSON.stringify(data));
     return data;
   } catch (error) {
     throw error;
@@ -11,9 +15,14 @@ export default async function getSomething() {
 }
 
 export async function updateRefresh() {
+  let head = config.headers.Authorization;
+  if (!head) {
+    let head = "Not Valid";
+    return head;
+  }
   try {
     console.log("Something Else");
-    const { data } = await axios.get("/api/tickets");
+    const { data } = await axios.get("/api/tickets", { head });
     return data;
   } catch (error) {
     throw error;
@@ -32,6 +41,11 @@ export async function createTicket(
   gpid,
   gpcust
 ) {
+  let head = config.headers.Authorization;
+  if (!head) {
+    let head = "Not Valid";
+    return head;
+  }
   try {
     await axios.post("api/tickets/create", {
       callname,
@@ -44,6 +58,7 @@ export async function createTicket(
       email,
       gpid,
       gpcust,
+      head,
     });
   } catch (error) {
     throw error;
@@ -51,16 +66,27 @@ export async function createTicket(
 }
 
 export async function deleteTix(id) {
+  console.log(typeof config.headers.Authorization);
+  let head = config.headers.Authorization;
+  if (!head) {
+    let head = "Not Valid";
+    return head;
+  }
   try {
-    await axios.post("api/tickets/delete", { id });
+    await axios.post("api/tickets/delete", { id, head });
   } catch (error) {
     throw error;
   }
 }
 
 export async function openTix(id) {
+  let head = config.headers.Authorization;
+  if (!head) {
+    let head = "Not Valid";
+    return head;
+  }
   try {
-    await axios.post("api/tickets/open", { id });
+    await axios.post("api/tickets/open", { id, head });
   } catch (error) {
     throw error;
   }
@@ -80,6 +106,11 @@ export async function updateTix(
   gpcust
 ) {
   try {
+    let head = config.headers.Authorization;
+    if (!head) {
+      let head = "Not Valid";
+      return head;
+    }
     await axios.post("api/tickets/update", {
       callname,
       callnumber,
@@ -92,6 +123,7 @@ export async function updateTix(
       email,
       gpid,
       gpcust,
+      head,
     });
   } catch (error) {
     throw error;

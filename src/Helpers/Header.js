@@ -40,7 +40,10 @@ const Header = ({
     setGpcust("");
     setSol("op");
   };
-
+  const logOut = () => {
+    sessionStorage.clear();
+    window.location.reload();
+  };
   const capital = sessionStorage.getItem("user");
   const user = capital.charAt(0).toUpperCase() + capital.slice(1);
   const handleTextChange = (e) => {
@@ -52,6 +55,9 @@ const Header = ({
         <div className="user">Hello, {user}</div>
         <button className="newbutton" onClick={clearModal}>
           New
+        </button>
+        <button className="newbutton" onClick={logOut}>
+          Logout
         </button>
       </div>
       <div className="searchingbuttons">
