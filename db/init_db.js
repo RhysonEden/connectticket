@@ -55,7 +55,6 @@ async function dropTables() {
   try {
     await client.query(`
       DROP TABLE IF EXISTS users;
-      DROP TABLE IF EXISTS ticket;
        `);
   } catch (error) {
     console.error("Error dropping tables!");
@@ -78,6 +77,16 @@ async function createInitialUsers() {
           resolve();
         }
       );
+    });
+    await new Promise((resolve, reject) => {
+      bcrypt.hash("gft2021", SALT_COUNT, async function (err, hashedPassword) {
+        const nels = await createUser({
+          username: "sydney",
+          password: hashedPassword,
+          email: "test1@yahoo.com",
+        });
+        resolve();
+      });
     });
 
     await new Promise((resolve, reject) => {
@@ -169,14 +178,6 @@ async function buildTicket(
   }
 }
 
-async function testDelete(id) {
-  try {
-    let del = await deleteTicket(id);
-  } catch (error) {
-    throw error;
-  }
-}
-
 async function testUpdate() {
   let callname = "testing";
   callnumber = "12345";
@@ -214,21 +215,8 @@ async function rebuildDB() {
 async function testDB() {
   try {
     await dropTables();
-    console.log(callname, email, gpid, "new Stuff");
     await createTables();
     await createInitialUsers();
-    await buildTicket(
-      callname,
-      callnumber,
-      gvrid,
-      notes,
-      ntcflag,
-      date,
-      user,
-      email,
-      gpid,
-      gpcust
-    );
     // await testDelete(1);
     // await testUpdate();
     const userNels = await getUserByUsername("nels");
