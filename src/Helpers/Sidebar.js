@@ -45,11 +45,12 @@ const Sidebar = ({ total, openCount, closedCount }) => {
         </SidebarHeader>
         <SidebarContent>
           <Menu iconShape="square">
-            <MenuItem icon={<FaList />}>Ticket Total - {total}</MenuItem>
-            <MenuItem icon={<RiPencilLine />}>
-              Total Open - {openCount}
-            </MenuItem>
-            <MenuItem icon={<BiCog />}>Total Closed - {closedCount}</MenuItem>
+            <div className="logotext">
+              <p>{menuCollapse ? null : "Tickets :"}</p>{" "}
+            </div>
+            <MenuItem icon={<FaList />}>Total - {total}</MenuItem>
+            <MenuItem icon={<RiPencilLine />}>Open - {openCount}</MenuItem>
+            <MenuItem icon={<BiCog />}>Closed - {closedCount}</MenuItem>
           </Menu>
         </SidebarContent>
         <SidebarFooter>
