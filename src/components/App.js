@@ -42,12 +42,6 @@ const App = () => {
         let open = response.tickets;
         setMessage(response.tickets);
 
-        const maxId = tickets.reduce(
-          (max, tickets) => (tickets.id > max ? tickets.id : max),
-          tickets[0].id
-        );
-        setTotal(maxId);
-
         const openTickets = open.map((mess, index) => {
           if (mess.ntcflag === false) {
             return openTix.push("yes");
@@ -57,6 +51,9 @@ const App = () => {
         });
         setOpenCount(openTix.length);
         setClosedCount(closedTix.length);
+
+        let maxId = openTix.length + closedTix.length;
+        setTotal(maxId);
       })
 
       .catch((error) => {
