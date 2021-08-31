@@ -33,36 +33,34 @@ const Sidebar = ({ total, openCount, closedCount }) => {
   };
 
   return (
-    <>
-      <div id="header">
-        <ProSidebar collapsed={menuCollapse}>
-          <SidebarHeader>
-            <div className="closemenu" onClick={menuIconClick}>
-              {menuCollapse ? <FiArrowRightCircle /> : <FiArrowLeftCircle />}
-            </div>
-            <div className="logotext">
-              <p>{menuCollapse ? "Stats" : "GC Call Log Stats"}</p>
-            </div>
-          </SidebarHeader>
-          <SidebarContent>
-            <Menu iconShape="square">
-              <MenuItem icon={<FaList />}>Ticket Total - {total}</MenuItem>
-              <MenuItem icon={<RiPencilLine />}>
-                Total Open - {openCount}
-              </MenuItem>
-              <MenuItem icon={<BiCog />}>Total Closed - {closedCount}</MenuItem>
-            </Menu>
-          </SidebarContent>
-          <SidebarFooter>
-            <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />} onClick={logOut}>
-                Logout
-              </MenuItem>
-            </Menu>
-          </SidebarFooter>
-        </ProSidebar>
-      </div>
-    </>
+    <div id="header" className="header">
+      <ProSidebar collapsed={menuCollapse}>
+        <SidebarHeader>
+          <div className="closemenu" onClick={menuIconClick}>
+            {menuCollapse ? <FiArrowRightCircle /> : <FiArrowLeftCircle />}
+          </div>
+          <div className="logotext">
+            <p>{menuCollapse ? "Stats" : "GC Call Log Stats"}</p>
+          </div>
+        </SidebarHeader>
+        <SidebarContent>
+          <Menu iconShape="square">
+            <MenuItem icon={<FaList />}>Ticket Total - {total}</MenuItem>
+            <MenuItem icon={<RiPencilLine />}>
+              Total Open - {openCount}
+            </MenuItem>
+            <MenuItem icon={<BiCog />}>Total Closed - {closedCount}</MenuItem>
+          </Menu>
+        </SidebarContent>
+        <SidebarFooter>
+          <Menu iconShape="square">
+            <MenuItem icon={<FiLogOut />} onClick={logOut}>
+              Logout
+            </MenuItem>
+          </Menu>
+        </SidebarFooter>
+      </ProSidebar>
+    </div>
   );
 };
 
