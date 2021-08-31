@@ -50,7 +50,7 @@ const Header = ({
     setSearchInput(e.target.value);
   };
   return (
-    <div className="header">
+    <div className="headtop">
       <div className="searching">
         <div className="user">Hello, {user}</div>
         <button className="newbutton" onClick={clearModal}>

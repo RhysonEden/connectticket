@@ -10,6 +10,8 @@ import IdleTimerContainer from "../Helpers/IdleTimerContainer";
 import { BrowserRouter as Brouter, Switch } from "react-router-dom";
 import Opening from "../Helpers/Opening";
 import Card from "../Helpers/Card";
+import Sidebar from "../Helpers/Sidebar";
+const assert = require("assert");
 const App = () => {
   const [message, setMessage] = useState([]);
   const [show, setShow] = useState(false);
@@ -24,6 +26,9 @@ const App = () => {
   const [email, setEmail] = useState("");
   const [gpcust, setGpcust] = useState("");
   const [sol, setSol] = useState("op");
+  const [total, setTotal] = useState(0);
+  const [openCount, setOpenCount] = useState(0);
+  const [closedCount, setClosedCount] = useState(0);
   let user = sessionStorage.getItem("user");
   // if (!user) {
   //   console.log("no");
@@ -31,9 +36,29 @@ const App = () => {
   useEffect(() => {
     getSomething()
       .then((response) => {
+        let openTix = [];
+        let closedTix = [];
         let tickets = response.tickets;
-        setMessage(tickets);
+        let open = response.tickets;
+        setMessage(response.tickets);
+
+        const maxId = tickets.reduce(
+          (max, tickets) => (tickets.id > max ? tickets.id : max),
+          tickets[0].id
+        );
+        setTotal(maxId);
+
+        const openTickets = open.map((mess, index) => {
+          if (mess.ntcflag === false) {
+            return openTix.push("yes");
+          } else {
+            return closedTix.push("closed");
+          }
+        });
+        setOpenCount(openTix.length);
+        setClosedCount(closedTix.length);
       })
+
       .catch((error) => {
         setMessage(error.message);
       });
@@ -51,6 +76,11 @@ const App = () => {
     return (
       <Brouter>
         <div className="app">
+          <Sidebar
+            total={total}
+            openCount={openCount}
+            closedCount={closedCount}
+          />
           <Header
             sol={sol}
             setSol={setSol}
