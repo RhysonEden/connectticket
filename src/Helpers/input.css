@@ -32,6 +32,7 @@ button {
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
+  margin-left: 10%;
 }
 
 .notes {
@@ -210,6 +211,8 @@ button {
 
 .notprovided {
   background-color: yellow;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
 
 .search,

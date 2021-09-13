@@ -1,6 +1,8 @@
 #header {
-  position: absolute;
+  position: fixed;
   width: 200px;
+  margin-top: 5%;
+  height: 95%;
 }
 #header .pro-sidebar {
   height: 100vh;
