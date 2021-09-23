@@ -28,6 +28,7 @@ const App = () => {
   const [sol, setSol] = useState("op");
   const [total, setTotal] = useState(0);
   const [openCount, setOpenCount] = useState(0);
+  const [dispatchCount, setDispatchCount] = useState(0);
   const [closedCount, setClosedCount] = useState(0);
   let user = sessionStorage.getItem("user");
 
@@ -36,20 +37,26 @@ const App = () => {
       .then((response) => {
         let openTix = [];
         let closedTix = [];
+        let dispatchTix = [];
         let tickets = response.tickets;
         let open = response.tickets;
+        console.log(open);
         setMessage(response.tickets);
 
         const openTickets = open.map((mess, index) => {
-          if (mess.ntcflag === false) {
-            return openTix.push("yes");
-          } else {
-            return closedTix.push("closed");
+          if (mess.ntcflag === false && mess.email === "NA") {
+            openTix.push("yes");
+          }
+          if (mess.email != "NA") {
+            dispatchTix.push("e");
+          }
+          if (mess.ntcflag != false) {
+            closedTix.push("closed");
           }
         });
         setOpenCount(openTix.length);
         setClosedCount(closedTix.length);
-
+        setDispatchCount(dispatchTix.length);
         let maxId = openTix.length + closedTix.length;
         setTotal(maxId);
       })
@@ -75,6 +82,7 @@ const App = () => {
             total={total}
             openCount={openCount}
             closedCount={closedCount}
+            dispatchCount={dispatchCount}
           />
           <Header
             sol={sol}
