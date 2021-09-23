@@ -14,7 +14,6 @@ ticketRouter.get("/", async (req, res, next) => {
   try {
     const tickets = await getAllTickets();
     // let tix = sessionStorage.setItem("data", JSON.stringify(tickets));
-    // console.log(tix, "tix");
     res.send({ tickets });
   } catch ({ name, message }) {
     next({ name, message });

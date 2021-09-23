@@ -30,9 +30,7 @@ const App = () => {
   const [openCount, setOpenCount] = useState(0);
   const [closedCount, setClosedCount] = useState(0);
   let user = sessionStorage.getItem("user");
-  // if (!user) {
-  //   console.log("no");
-  // } else {
+
   useEffect(() => {
     getSomething()
       .then((response) => {

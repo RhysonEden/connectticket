@@ -31,6 +31,19 @@ async function createTables() {
           password varchar NOT NULL,
           email varchar NOT NULL
         );
+        CREATE TABLE ticket (
+          id SERIAL PRIMARY KEY,
+          callname varchar,
+          callnumber varchar,
+          gvrid varchar,
+          notes varchar,
+          ntcflag boolean,
+          date varchar,
+          userid varchar,
+          email varchar,
+          gpid varchar,
+          gpcust varchar
+);
       `);
   } catch (error) {
     throw error;
@@ -55,6 +68,7 @@ async function dropTables() {
   try {
     await client.query(`
       DROP TABLE IF EXISTS users;
+      DROP TABLE IF EXISTS ticket;
        `);
   } catch (error) {
     console.error("Error dropping tables!");

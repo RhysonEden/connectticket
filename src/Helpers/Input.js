@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./input.css";
 import { createTicket } from "../api";
 import moment from "moment";
@@ -26,7 +26,8 @@ const Input = ({
   setSol,
   update,
 }) => {
-  const date = moment().format("MM/DD/YYYY");
+  const [checked, setChecked] = useState(false);
+  const date = moment().format("MM/DD/YYYY, hh:mma");
   let user = sessionStorage.getItem("user");
   const alert = useAlert();
   const createTix = async () => {
@@ -42,12 +43,16 @@ const Input = ({
     if (gpcust.length == 0) {
       globalcust = "NA";
     }
-    if (email.length == 0) {
+    if (checked !== true) {
       mail = "NA";
+    } else {
+      mail = true;
     }
     if (id === 6 && name !== 0 && number === 10) {
       try {
-        let finalnote = date + " " + notes;
+        const myArr = date.split(",");
+        const finDate = myArr[0];
+        let finalnote = finDate + " " + notes;
         setShow(false);
         window.location.reload();
         await createTicket(
@@ -95,7 +100,12 @@ const Input = ({
     setGpid(e.target.value);
   };
   const changeEmail = (e) => {
-    setEmail(e.target.value);
+    setChecked(!checked);
+    if (checked === true) {
+      setEmail(true);
+    } else if (checked !== true) {
+      setEmail(false);
+    }
   };
 
   const changeGpcust = (e) => {
@@ -163,15 +173,16 @@ const Input = ({
           type="text"
           value={date}
         ></input>
-        <div>
-          <input
-            className="form-input"
-            id="link"
-            placeholder="Customer Contact Method"
-            type="text"
-            value={email}
-            onChange={changeEmail}
-          ></input>
+        <div class="checkboxes">
+          <label for="x">
+            <input
+              type="checkbox"
+              id="x"
+              checked={checked}
+              onChange={changeEmail}
+            />
+            <span>Tech Ticket Created?</span>
+          </label>
         </div>
       </div>
       <div className="notprovided">All Field With * Are Required</div>

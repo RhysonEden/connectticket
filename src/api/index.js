@@ -21,7 +21,6 @@ export async function updateRefresh() {
     return head;
   }
   try {
-    console.log("Something Else");
     const { data } = await axios.get("/api/tickets", { head });
     return data;
   } catch (error) {
@@ -66,7 +65,6 @@ export async function createTicket(
 }
 
 export async function deleteTix(id) {
-  console.log(typeof config.headers.Authorization);
   let head = config.headers.Authorization;
   if (!head) {
     let head = "Not Valid";

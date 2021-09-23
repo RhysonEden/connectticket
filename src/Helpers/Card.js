@@ -46,8 +46,11 @@ const Card = ({
   };
 
   let post = message.sort(function compare(a, b) {
-    let dateA = new Date(a.date);
+    const myArr = a.date.split(",");
+    let test = myArr[0];
+    let dateA = new Date(test);
     let dateB = new Date(b.date);
+
     return dateA - dateB;
   });
 
@@ -61,6 +64,10 @@ const Card = ({
           if (clientsId.includes(searchInput.toLowerCase())) {
             return true;
           }
+          const ticketId = client.gpid;
+          if (ticketId.includes(searchInput.toLowerCase())) {
+            return true;
+          }
           const gpcustId = client.gpcust;
           if (gpcustId.includes(searchInput.toUpperCase())) {
             return true;
@@ -70,7 +77,7 @@ const Card = ({
         })
         .map((mess, index) => (
           <>
-            {mess.ntcflag == false ? (
+            {mess.ntcflag == false && mess.email === "NA" ? (
               <div key={index} className="card" value={mess.id}>
                 <div className="hundred">Caller's Name : {mess.callname}</div>
                 <div className="hundred">
@@ -105,12 +112,10 @@ const Card = ({
                 <div className="hundred">Date of Call : {mess.date}</div>
                 <div className="hundred">Created By : {mess.userid}</div>
                 {mess.email.length >= 3 ? (
-                  <div className="hundred">
-                    Customer Contacted by : {mess.email}
-                  </div>
+                  <div className="hundred">Ticket Created for site.</div>
                 ) : (
                   <div className="notprovided">
-                    <BiBlock /> Customer Not Contacted.
+                    <BiBlock /> No GP Ticket Created.
                   </div>
                 )}
                 {mess.ntcflag == false ? (
@@ -133,24 +138,18 @@ const Card = ({
                       setId(mess.id);
                       if (mess.gpid == "NA") {
                         setGpid("");
-                        console.log("GPID", mess.gpid.length);
                       } else {
                         setGpid(mess.gpid);
-                        console.log("SET GPID", mess.gpid);
                       }
                       if (mess.email == "NA") {
-                        setEmail("");
-                        console.log("EMAIL", mess.gpid.length);
+                        setEmail(false);
                       } else {
                         setEmail(mess.email);
-                        console.log("SET EMAIL", mess.email);
                       }
                       if (mess.gpcust == "NA") {
                         setGpcust("");
-                        console.log("GPCUST", mess.gpcust.length);
                       } else {
                         setGpcust(mess.gpcust);
-                        console.log("SET GPCUST", mess.gpcust);
                       }
                       setSol("clos");
                     }}

@@ -96,13 +96,6 @@ const Modal = ({
           <button className="modal-button" onClick={() => setShow(false)}>
             Close
           </button>
-          {/* {sol.length != 2 ? (
-            <button className="modal-button" onClick={update}>
-              Update
-            </button>
-          ) : (
-            <div></div>
-          )} */}
         </div>
       </div>
     </div>

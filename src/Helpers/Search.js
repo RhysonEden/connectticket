@@ -54,7 +54,7 @@ const Search = ({
           Clear
         </button>
         <button className="bigbuttonextra" onClick={contactButton}>
-          Contacted
+          Dispatched
         </button>
       </div>
       <div className="mobilsearching">

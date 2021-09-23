@@ -208,7 +208,23 @@ button {
 .bigbuttonextra {
   width: 90px;
 }
+.checkboxes {
+  border: 1px solid black;
+}
+.checkboxes label {
+  display: inline-block;
+  padding-right: 10px;
+  white-space: nowrap;
+}
 
+.checkboxes input {
+  vertical-align: middle;
+}
+
+.checkboxes label span {
+  vertical-align: middle;
+  padding-left: 15%;
+}
 .notprovided {
   background-color: yellow;
   border-left: 1px solid black;

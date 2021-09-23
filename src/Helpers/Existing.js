@@ -89,9 +89,7 @@ const Existing = ({
               <div className="hundred">Date of Call : {mess.date}</div>
               <div className="hundred">Created By : {mess.userid}</div>
               {mess.email.length >= 3 ? (
-                <div className="hundred">
-                  Customer Contacted by : {mess.email}
-                </div>
+                <div className="hundred">Ticket Created for site.</div>
               ) : (
                 <div className="notprovided">
                   <BiBlock /> Customer Not Contacted.
@@ -117,24 +115,18 @@ const Existing = ({
                     setId(mess.id);
                     if (mess.gpid == "NA") {
                       setGpid("");
-                      console.log("GPID", mess.gpid.length);
                     } else {
                       setGpid(mess.gpid);
-                      console.log("SET GPID", mess.gpid);
                     }
                     if (mess.email == "NA") {
                       setEmail("");
-                      console.log("EMAIL", mess.gpid.length);
                     } else {
                       setEmail(mess.email);
-                      console.log("SET EMAIL", mess.email);
                     }
                     if (mess.gpcust == "NA") {
                       setGpcust("");
-                      console.log("GPCUST", mess.gpcust.length);
                     } else {
                       setGpcust(mess.gpcust);
-                      console.log("SET GPCUST", mess.gpcust);
                     }
                     setSol("clos");
                   }}
