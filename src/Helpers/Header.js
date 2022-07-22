@@ -44,15 +44,15 @@ const Header = ({
     sessionStorage.clear();
     window.location.reload();
   };
-  const capital = sessionStorage.getItem("user");
-  const user = capital.charAt(0).toUpperCase() + capital.slice(1);
+  // const capital = sessionStorage.getItem("user");
+  // const user = capital.charAt(0).toUpperCase() + capital.slice(1);
   const handleTextChange = (e) => {
     setSearchInput(e.target.value);
   };
   return (
     <div className="headtop">
       <div className="searching">
-        <div className="user">Hello, {user}</div>
+        <div className="user">Hello</div>
         <button className="newbutton" onClick={clearModal}>
           New
         </button>

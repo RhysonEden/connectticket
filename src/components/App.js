@@ -66,25 +66,107 @@ const App = () => {
       });
   }, []);
   // }
-  if (!user) {
-    return (
-      <Brouter>
+  // if (!user) {
+  //   return (
+  //     <Brouter>
+  //       <Switch>
+  //         <Login />
+  //       </Switch>
+  //     </Brouter>
+  //   );
+  // } else {
+  return (
+    <Brouter>
+      <div className="app">
+        <Sidebar
+          total={total}
+          openCount={openCount}
+          closedCount={closedCount}
+          dispatchCount={dispatchCount}
+        />
+        <Header
+          sol={sol}
+          setSol={setSol}
+          component={Existing}
+          message={message}
+          setMessage={setMessage}
+          show={show}
+          setShow={setShow}
+          callname={callname}
+          callnumber={callnumber}
+          gvrid={gvrid}
+          notes={notes}
+          ntcflag={ntcflag}
+          setCallName={setCallName}
+          setCallNumber={setCallNumber}
+          setGvrid={setGvrid}
+          setNotes={setNotes}
+          setNtcflag={setNtcflag}
+          setId={setId}
+          gpid={gpid}
+          setGpid={setGpid}
+          setGpcust={setGpcust}
+          gpcust={gpcust}
+          setEmail={setEmail}
+          email={email}
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+        />
+        <Modal
+          sol={sol}
+          setSol={setSol}
+          show={show}
+          setShow={setShow}
+          callname={callname}
+          callnumber={callnumber}
+          gvrid={gvrid}
+          notes={notes}
+          ntcflag={ntcflag}
+          setCallName={setCallName}
+          setCallNumber={setCallNumber}
+          setGvrid={setGvrid}
+          setNotes={setNotes}
+          setNtcflag={setNtcflag}
+          id={id}
+          gpid={gpid}
+          setGpid={setGpid}
+          email={email}
+          setEmail={setEmail}
+          gpcust={gpcust}
+          setGpcust={setGpcust}
+        />
         <Switch>
-          <Login />
-        </Switch>
-      </Brouter>
-    );
-  } else {
-    return (
-      <Brouter>
-        <div className="app">
-          <Sidebar
-            total={total}
-            openCount={openCount}
-            closedCount={closedCount}
-            dispatchCount={dispatchCount}
+          <Card
+            path="/"
+            exact
+            searchInput={searchInput}
+            sol={sol}
+            setSol={setSol}
+            component={Existing}
+            message={message}
+            setMessage={setMessage}
+            show={show}
+            setShow={setShow}
+            callname={callname}
+            callnumber={callnumber}
+            gvrid={gvrid}
+            notes={notes}
+            ntcflag={ntcflag}
+            setCallName={setCallName}
+            setCallNumber={setCallNumber}
+            setGvrid={setGvrid}
+            setNotes={setNotes}
+            setNtcflag={setNtcflag}
+            setId={setId}
+            gpid={gpid}
+            setGpid={setGpid}
+            setGpcust={setGpcust}
+            gpcust={gpcust}
+            setEmail={setEmail}
+            email={email}
           />
-          <Header
+          <Results
+            path="/results"
             sol={sol}
             setSol={setSol}
             component={Existing}
@@ -110,11 +192,14 @@ const App = () => {
             setEmail={setEmail}
             email={email}
             searchInput={searchInput}
-            setSearchInput={setSearchInput}
           />
-          <Modal
+          <Email
+            path="/email"
             sol={sol}
             setSol={setSol}
+            component={Existing}
+            message={message}
+            setMessage={setMessage}
             show={show}
             setShow={setShow}
             callname={callname}
@@ -127,106 +212,21 @@ const App = () => {
             setGvrid={setGvrid}
             setNotes={setNotes}
             setNtcflag={setNtcflag}
-            id={id}
+            setId={setId}
             gpid={gpid}
             setGpid={setGpid}
-            email={email}
-            setEmail={setEmail}
-            gpcust={gpcust}
             setGpcust={setGpcust}
+            gpcust={gpcust}
+            setEmail={setEmail}
+            email={email}
+            searchInput={searchInput}
           />
-          <Switch>
-            <Card
-              path="/"
-              exact
-              searchInput={searchInput}
-              sol={sol}
-              setSol={setSol}
-              component={Existing}
-              message={message}
-              setMessage={setMessage}
-              show={show}
-              setShow={setShow}
-              callname={callname}
-              callnumber={callnumber}
-              gvrid={gvrid}
-              notes={notes}
-              ntcflag={ntcflag}
-              setCallName={setCallName}
-              setCallNumber={setCallNumber}
-              setGvrid={setGvrid}
-              setNotes={setNotes}
-              setNtcflag={setNtcflag}
-              setId={setId}
-              gpid={gpid}
-              setGpid={setGpid}
-              setGpcust={setGpcust}
-              gpcust={gpcust}
-              setEmail={setEmail}
-              email={email}
-            />
-            <Results
-              path="/results"
-              sol={sol}
-              setSol={setSol}
-              component={Existing}
-              message={message}
-              setMessage={setMessage}
-              show={show}
-              setShow={setShow}
-              callname={callname}
-              callnumber={callnumber}
-              gvrid={gvrid}
-              notes={notes}
-              ntcflag={ntcflag}
-              setCallName={setCallName}
-              setCallNumber={setCallNumber}
-              setGvrid={setGvrid}
-              setNotes={setNotes}
-              setNtcflag={setNtcflag}
-              setId={setId}
-              gpid={gpid}
-              setGpid={setGpid}
-              setGpcust={setGpcust}
-              gpcust={gpcust}
-              setEmail={setEmail}
-              email={email}
-              searchInput={searchInput}
-            />
-            <Email
-              path="/email"
-              sol={sol}
-              setSol={setSol}
-              component={Existing}
-              message={message}
-              setMessage={setMessage}
-              show={show}
-              setShow={setShow}
-              callname={callname}
-              callnumber={callnumber}
-              gvrid={gvrid}
-              notes={notes}
-              ntcflag={ntcflag}
-              setCallName={setCallName}
-              setCallNumber={setCallNumber}
-              setGvrid={setGvrid}
-              setNotes={setNotes}
-              setNtcflag={setNtcflag}
-              setId={setId}
-              gpid={gpid}
-              setGpid={setGpid}
-              setGpcust={setGpcust}
-              gpcust={gpcust}
-              setEmail={setEmail}
-              email={email}
-              searchInput={searchInput}
-            />
-          </Switch>
-          <Opening getSomething={getSomething} setMessage={setMessage} />
-          <IdleTimerContainer setMessage={setMessage} />
-        </div>
-      </Brouter>
-    );
-  }
+        </Switch>
+        <Opening getSomething={getSomething} setMessage={setMessage} />
+        <IdleTimerContainer setMessage={setMessage} />
+      </div>
+    </Brouter>
+  );
 };
+// };
 export default App;

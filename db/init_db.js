@@ -231,6 +231,18 @@ async function testDB() {
     await dropTables();
     await createTables();
     await createInitialUsers();
+    await buildTicket(
+      callname,
+      callnumber,
+      gvrid,
+      notes,
+      ntcflag,
+      date,
+      user,
+      email,
+      gpid,
+      gpcust
+    );
     // await testDelete(1);
     // await testUpdate();
     const userNels = await getUserByUsername("nels");
